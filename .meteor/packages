@@ -23,3 +23,4 @@ accounts-password             # adds access to the meteor accounts package
 quave:graphql
 react-meteor-data
 fourseven:scss
+meteorhacks:ssr
