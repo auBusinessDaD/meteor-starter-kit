@@ -8,9 +8,9 @@ import schema from './api';
 const server = new ApolloServer({
   schema,
   context: async ({ req }) => ({
-    user: await getUser(req.headers.authorization),
+    user: await getUser(req.headers.authorization)
   }),
-  uploads: false,
+  uploads: false
 });
 
 const app = WebApp.connectHandlers;
@@ -21,11 +21,13 @@ async function startGraphQLServer() {
   server.applyMiddleware({
     app,
     path: '/graphql',
-    cors: true,
+    cors: true
   });
 }
 
-await startGraphQLServer();
+async () => {
+  await startGraphQLServer();
+};
 
 app.use('/graphql', (req, res) => {
   if (req.method === 'GET') {

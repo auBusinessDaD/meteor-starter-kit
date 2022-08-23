@@ -9,7 +9,6 @@ import getFileData from '../../utils/getFileData';
 //
 import Image from '../Image';
 import Iconify from '../Iconify';
-import { varFade } from '../animate';
 
 // ----------------------------------------------------------------------
 
@@ -31,7 +30,6 @@ export default function MultiFilePreview({ showPreview = false, files, onRemove 
           return (
             <ListItem
               key={key}
-              {...varFade().inRight}
               sx={{
                 p: 0,
                 m: 0.5,
@@ -72,7 +70,6 @@ export default function MultiFilePreview({ showPreview = false, files, onRemove 
         return (
           <ListItem
             key={key}
-            {...varFade().inRight}
             sx={{
               my: 1,
               px: 2,
