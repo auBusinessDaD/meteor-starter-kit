@@ -1,4 +1,4 @@
-const path = require("path");
+const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const meteorExternals = require('webpack-meteor-externals');
@@ -39,6 +39,11 @@ const clientConfig = {
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true
+  },
   resolve: {
     extensions: ['*', '.mjs', '.js', '.jsx', '.json', '.gql', '.graphql']
   },
