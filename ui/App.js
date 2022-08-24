@@ -25,6 +25,8 @@ import { SettingsProvider } from './contexts/SettingsContext';
 import { CollapseDrawerProvider } from './contexts/CollapseDrawerContext';
 import ThemeSettings from './components/settings';
 
+// lazy loading was added
+
 // ----------------------------------------------------------------------
 
 export default function App() {
