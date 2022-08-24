@@ -39,11 +39,6 @@ const clientConfig = {
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    clean: true
-  },
   resolve: {
     extensions: ['*', '.mjs', '.js', '.jsx', '.json', '.gql', '.graphql']
   },
