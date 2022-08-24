@@ -33,17 +33,22 @@ const clientConfig = {
       }
     ]
   },
+  resolve: {
+    extensions: ['*', '.mjs', '.js', '.jsx', '.json', '.gql', '.graphql']
+  },
+  output: {
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './startup/client/main.html'
     }),
     new webpack.HotModuleReplacementPlugin()
   ],
-  resolve: {
-    extensions: ['*', '.mjs', '.js', '.jsx', '.json', '.gql', '.graphql']
-  },
   externals: [meteorExternals()],
   devServer: {
+    contentBase: './public',
     hot: 'only'
   }
 };
