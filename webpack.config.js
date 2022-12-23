@@ -37,8 +37,9 @@ const clientConfig = {
     extensions: ['*', '.mjs', '.js', '.jsx', '.json', '.gql', '.graphql']
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: `${__dirname}/dist`,
+    publicPath: '/',
+    filename: 'bundle.js'
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -48,8 +49,12 @@ const clientConfig = {
   ],
   externals: [meteorExternals()],
   devServer: {
-    contentBase: './public',
-    hot: 'only'
+    contentBase: './dist',
+    hot: true,
+    hmr: true
+  },
+  stats: {
+    errorDetails: false
   }
 };
 
@@ -57,9 +62,6 @@ const serverConfig = {
   entry: ['./startup/server/index.js'],
   target: 'node',
   devServer: {
-    stats: {
-      chunks: false
-    },
     hot: 'only'
   },
   externals: [meteorExternals(), nodeExternals({ modulesDir: path.resolve(__dirname, 'node_modules') })]
