@@ -32,7 +32,9 @@ meteor npm install
 
 ```
 yarn
+```
 or
+```
 yarn install
 ```
 
