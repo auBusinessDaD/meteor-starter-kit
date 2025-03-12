@@ -5,7 +5,7 @@ import sendEmail from '../../../modules/server/sendEmail';
 const getEmailOptions = (user) => {
   try {
     const firstName = user.profile.name && user.profile.name.first ? user.profile.name.first : user.profile.name || '';
-    const supportEmail = 'care@gamesnight.fun';
+    const supportEmail = 'care@email.com';
     const { productName } = Meteor.settings.public;
 
     return {
