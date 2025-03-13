@@ -18,8 +18,8 @@ const navConfig = [
         icon: getIcon('eva:pie-chart-2-fill'),
       },
       {
-        title: 'documents',
-        path: `${PATH_DASHBOARD.document.root}`,
+        title: 'students',
+        path: `${PATH_DASHBOARD.student.root}`,
         icon: getIcon('gala:file-doc'),
       },
     ],

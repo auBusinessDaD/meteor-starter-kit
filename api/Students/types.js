@@ -1,5 +1,5 @@
 export default `
-  type Document {
+  type Student {
     _id: String
     isPublic: Boolean
     title: String

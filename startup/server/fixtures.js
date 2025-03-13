@@ -1,9 +1,9 @@
 import seeder from '@cleverbeagle/seeder';
 import { Meteor } from 'meteor/meteor';
-import Documents from '../../api/Documents/Documents';
+import Students from '../../api/Students/Students';
 import Comments from '../../api/Comments/Comments';
 
-const commentsSeed = (userId, date, documentId) => {
+const commentsSeed = (userId, date, studentId) => {
   seeder(Comments, {
     seedIfExistingData: true,
     environments: ['development', 'staging', 'production'],
@@ -13,7 +13,7 @@ const commentsSeed = (userId, date, documentId) => {
         seed(commentIteration, faker) {
           return {
             userId,
-            documentId,
+            studentId,
             comment: faker.hacker.phrase(),
             createdAt: date,
           };
@@ -23,8 +23,8 @@ const commentsSeed = (userId, date, documentId) => {
   });
 };
 
-const documentsSeed = (userId) => {
-  seeder(Documents, {
+const studentsSeed = (userId) => {
+  seeder(Students, {
     seedIfExistingData: true,
     environments: ['development', 'staging', 'production'],
     data: {
@@ -37,10 +37,10 @@ const documentsSeed = (userId) => {
             createdAt: date,
             updatedAt: date,
             owner: userId,
-            title: `Document #${iteration + 1}`,
-            body: `This is the body of document #${iteration + 1}`,
-            dependentData(documentId) {
-              commentsSeed(userId, date, documentId);
+            title: `This seeding should be replaced #${iteration + 1}`,
+            body: `This is the body of student #${iteration + 1}`,
+            dependentData(studentId) {
+              commentsSeed(userId, date, studentId);
             },
           };
         },
@@ -65,7 +65,7 @@ seeder(Meteor.users, {
         },
         roles: ['admin'],
         dependentData(userId) {
-          documentsSeed(userId);
+          studentsSeed(userId);
         },
       },
     ],
@@ -84,7 +84,7 @@ seeder(Meteor.users, {
           },
           roles: ['user'],
           dependentData(userId) {
-            documentsSeed(userId);
+            studentsSeed(userId);
           },
         };
       },

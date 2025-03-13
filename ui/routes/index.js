@@ -44,10 +44,10 @@ export default function Router() {
         { path: 'profile/:userId', element: <Profile /> },
         { path: 'analytics', element: <GeneralApp /> },
 
-        // documents
-        { path: 'documents', element: <Documents /> },
-        { path: 'documents/create', element: <DocumentCreate /> },
-        { path: 'documents/:documentId/edit', element: <DocumentCreate /> },
+        // students
+        { path: 'students', element: <Students /> },
+        { path: 'students/create', element: <StudentCreate /> },
+        { path: 'students/:studentId/edit', element: <StudentCreate /> },
 
         // Admin/users
         {
@@ -136,9 +136,9 @@ const ContactPage = Loadable(lazy(() => import('../pages/external_pages/Contact'
 const GeneralApp = Loadable(lazy(() => import('../pages/dashboard/GeneralApp')));
 const Page404 = Loadable(lazy(() => import('../pages/other/Page404')));
 
-// documents
-const Documents = Loadable(lazy(() => import('../pages/dashboard/document')));
-const DocumentCreate = Loadable(lazy(() => import('../pages/dashboard/document/DocumentCreate')));
+// students
+const Students = Loadable(lazy(() => import('../pages/dashboard/student')));
+const StudentCreate = Loadable(lazy(() => import('../pages/dashboard/student/StudentCreate')));
 
 // users
 const User = Loadable(lazy(() => import('../pages/dashboard/user')));

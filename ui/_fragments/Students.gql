@@ -1,4 +1,4 @@
-fragment DocumentAttributes on Document {
+fragment StudentAttributes on Student {
 	_id
 	isPublic
 	title

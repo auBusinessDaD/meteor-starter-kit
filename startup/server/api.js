@@ -9,9 +9,9 @@ import UserSettingsTypes from '../../api/UserSettings/types';
 import UserSettingsQueries from '../../api/UserSettings/queries';
 import UserSettingsMutations from '../../api/UserSettings/mutations';
 
-import DocumentTypes from '../../api/Documents/types';
-import DocumentQueries from '../../api/Documents/queries';
-import DocumentMutations from '../../api/Documents/mutations';
+import StudentTypes from '../../api/Students/types';
+import StudentQueries from '../../api/Students/queries';
+import StudentMutations from '../../api/Students/mutations';
 
 import CommentTypes from '../../api/Comments/types';
 import CommentQueries from '../../api/Comments/queries';
@@ -19,7 +19,7 @@ import CommentMutations from '../../api/Comments/mutations';
 
 import OAuthQueries from '../../api/OAuth/queries';
 
-import '../../api/Documents/server/indexes';
+import '../../api/Students/server/indexes';
 import '../../api/webhooks';
 
 import '../../api/App/server/publications';
@@ -30,13 +30,13 @@ import '../../api/Users/methods';
 const schema = {
   typeDefs: gql`
     ${UserTypes}
-    ${DocumentTypes}
+    ${StudentTypes}
     ${CommentTypes}
     ${UserSettingsTypes}
 
     type Query {
-      documents: [Document]
-      document(_id: String): Document
+      students: [Student]
+      student(_id: String): Student
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
       userSettings: [UserSetting]
@@ -45,10 +45,10 @@ const schema = {
     }
 
     type Mutation {
-      addDocument(title: String, body: String, cover: CoverInput, isPublic: Boolean): Document
-      updateDocument(_id: String!, title: String, body: String, cover: CoverInput, isPublic: Boolean): Document
-      removeDocument(_id: String!): Document
-      addComment(documentId: String!, comment: String!): Comment
+      addStudent(title: String, body: String, cover: CoverInput, isPublic: Boolean): Student
+      updateStudent(_id: String!, title: String, body: String, cover: CoverInput, isPublic: Boolean): Student
+      removeStudent(_id: String!): Student
+      addComment(studentId: String!, comment: String!): Comment
       removeComment(commentId: String!): Comment
       updateUser(user: UserInput): User
       removeUser(_id: String): User
@@ -60,23 +60,23 @@ const schema = {
     }
 
     type Subscription {
-      commentAdded(documentId: String!): Comment
+      commentAdded(studentId: String!): Comment
     }
   `,
   resolvers: {
     Query: {
-      ...DocumentQueries,
+      ...StudentQueries,
       ...UserQueries,
       ...UserSettingsQueries,
       ...OAuthQueries,
     },
     Mutation: {
-      ...DocumentMutations,
+      ...StudentMutations,
       ...CommentMutations,
       ...UserMutations,
       ...UserSettingsMutations,
     },
-    Document: {
+    Student: {
       comments: CommentQueries.comments,
     },
     Comment: {

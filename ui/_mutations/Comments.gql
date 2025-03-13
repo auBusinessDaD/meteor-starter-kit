@@ -1,7 +1,7 @@
-mutation addComment($documentId: String!, $comment: String!) {
-  addComment(documentId: $documentId, comment: $comment) {
+mutation addComment($studentId: String!, $comment: String!) {
+  addComment(studentId: $studentId, comment: $comment) {
     _id
-    documentId
+    studentId
     comment
     createdAt
     user {

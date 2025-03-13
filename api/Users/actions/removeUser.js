@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import Documents from '../../Documents/Documents';
+import Students from '../../Students/Students';
 import checkIfAuthorized, { isAdmin } from './checkIfAuthorized';
 
 let action;
@@ -12,11 +12,11 @@ const deleteUser = ({ _id }) => {
   }
 };
 
-const deleteDocuments = ({ _id }) => {
+const deleteStudents = ({ _id }) => {
   try {
-    return Documents.remove({ owner: _id });
+    return Students.remove({ owner: _id });
   } catch (exception) {
-    throw new Error(`[removeUser.deleteDocuments] ${exception.message}`);
+    throw new Error(`[removeUser.deleteStudents] ${exception.message}`);
   }
 };
 
@@ -49,7 +49,7 @@ const removeUser = (options) => {
       userToRemove._id = options.currentUser._id;
     }
 
-    deleteDocuments(userToRemove);
+    deleteStudents(userToRemove);
     deleteUser(userToRemove);
 
     action.resolve();

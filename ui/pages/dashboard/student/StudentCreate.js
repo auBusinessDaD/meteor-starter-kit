@@ -14,41 +14,41 @@ import Page from '../../../components/Page';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
 // sections
-import DocumentNewForm from './DocumentNewForm';
+import StudentNewForm from './StudentNewForm';
 
 // queries
-import { editDocument as editDocumentQuery } from '../../../_queries/Documents.gql';
+import { editStudent as editStudentQuery } from '../../../_queries/Students.gql';
 // ----------------------------------------------------------------------
 
-export default function Document() {
-  const { documentId } = useParams();
+export default function Student() {
+  const { studentId } = useParams();
   const { pathname } = useLocation();
   const isEdit = !!pathname.includes('edit');
 
-  const { data } = useQuery(editDocumentQuery, { variables: { _id: documentId } });
-  const currentDocument = (isEdit && data && data.document) || {};
+  const { data } = useQuery(editStudentQuery, { variables: { _id: studentId } });
+  const currentStudent = (isEdit && data && data.student) || {};
   return (
-    <Page title="Document">
+    <Page title="Student">
       <Container maxWidth="lg">
         <HeaderBreadcrumbs
-          heading="Documents"
+          heading="Students"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Documents', href: PATH_DASHBOARD.document.root },
-            { name: isEdit ? 'Edit Documet' : 'New Document' },
+            { name: 'Students', href: PATH_DASHBOARD.student.root },
+            { name: isEdit ? 'Edit Documet' : 'New Student' },
           ]}
           action={
             <Button
               variant="contained"
               component={RouterLink}
-              to={PATH_DASHBOARD.document.root}
+              to={PATH_DASHBOARD.student.root}
               startIcon={<ArrowBackIosNewIcon />}
             >
               Back
             </Button>
           }
         />
-        <DocumentNewForm currentDocument={currentDocument} isEdit={isEdit} />
+        <StudentNewForm currentStudent={currentStudent} isEdit={isEdit} />
       </Container>
     </Page>
   );

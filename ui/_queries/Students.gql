@@ -1,7 +1,7 @@
-#import "../_fragments/Documents.gql"
+#import "../_fragments/Students.gql"
 
-query documents {
-  documents {
+query students {
+  students {
     _id
     isPublic
     title
@@ -14,15 +14,15 @@ query documents {
   }
 }
 
-query editDocument($_id: String) {
-  document(_id: $_id) {
-    ...DocumentAttributes
+query editStudent($_id: String) {
+  student(_id: $_id) {
+    ...StudentAttributes
   }
 }
 
-query document($_id: String, $sortBy: String) {
-  document(_id: $_id) {
-    ...DocumentAttributes
+query student($_id: String, $sortBy: String) {
+  student(_id: $_id) {
+    ...StudentAttributes
     comments(sortBy: $sortBy) {
       _id
       comment

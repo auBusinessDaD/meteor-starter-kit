@@ -8,7 +8,7 @@ export default {
 
     const date = new Date().toISOString();
     const commentToInsert = {
-      documentId: args.documentId,
+      studentId: args.studentId,
       comment: sanitizeHtml(args.comment),
       userId: context.user._id,
       createdAt: date,

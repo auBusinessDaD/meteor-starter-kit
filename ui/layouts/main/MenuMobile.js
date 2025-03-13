@@ -147,7 +147,7 @@ function MenuMobileItem({ item, isOpen, onOpen }) {
     );
   }
 
-  if (title === 'Documentation') {
+  if (title === 'Students') {
     return (
       <ListItemStyle href={path} target="_blank" rel="noopener" component={Link}>
         <ListItemIcon>{icon}</ListItemIcon>

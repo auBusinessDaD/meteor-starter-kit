@@ -18,29 +18,29 @@ import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 import Iconify from '../../../components/Iconify';
 
 // sections
-import DocumentList from './DocumentList';
+import StudentList from './StudentList';
 
 // queries & mutations
-import { documents as documentsQuery } from '../../../_queries/Documents.gql';
-import { removeDocument as removeDocumentMutation } from '../../../_mutations/Documents.gql';
+import { students as studentsQuery } from '../../../_queries/Students.gql';
+import { removeStudent as removeStudentMutation } from '../../../_mutations/Students.gql';
 // ----------------------------------------------------------------------
 
-export default function Document() {
+export default function Student() {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const [removeDocument] = useMutation(removeDocumentMutation);
+  const [removeStudent] = useMutation(removeStudentMutation);
 
-  const { loading, data } = useQuery(documentsQuery);
+  const { loading, data } = useQuery(studentsQuery);
 
-  const documents = (data && data.documents) || [];
+  const students = (data && data.students) || [];
 
-  const deleteDocument = (_id) => {
-    const deleteDoc = documents.find((doc) => doc._id === _id);
+  const deleteStudent = (_id) => {
+    const deleteDoc = students.find((doc) => doc._id === _id);
     const public_id = deleteDoc && deleteDoc.cover && deleteDoc.cover.public_id;
-    removeDocument({
+    removeStudent({
       variables: {
         _id
       },
-      refetchQueries: [{ query: documentsQuery }]
+      refetchQueries: [{ query: studentsQuery }]
     }).then(async (res) => {
       if (public_id) {
         await Cloudinary.delete(public_id);
@@ -59,23 +59,23 @@ export default function Document() {
   };
 
   return (
-    <Page title="Document">
+    <Page title="Student">
       <Container maxWidth="lg">
         <HeaderBreadcrumbs
-          heading="Documents"
-          links={[{ name: 'Dashboard', href: PATH_DASHBOARD.root }, { name: 'Documents' }]}
+          heading="Students"
+          links={[{ name: 'Dashboard', href: PATH_DASHBOARD.root }, { name: 'Students' }]}
           action={
             <Button
               variant="contained"
               component={RouterLink}
-              to={PATH_DASHBOARD.document.create}
+              to={PATH_DASHBOARD.student.create}
               startIcon={<Iconify icon="eva:plus-fill" />}
             >
-              New Document
+              New Student
             </Button>
           }
         />
-        <DocumentList isLoading={loading} documentList={documents} onDelete={(id) => deleteDocument(id)} />
+        <StudentList isLoading={loading} studentList={students} onDelete={(id) => deleteStudent(id)} />
       </Container>
     </Page>
   );

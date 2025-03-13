@@ -32,19 +32,19 @@ import {
 import { PATH_DASHBOARD } from '../../../routes/paths';
 
 // sections
-import { DocumentTableRow, DocumentTableToolbar } from '../../../sections/@dashboard/document-list';
+import { StudentTableRow, StudentTableToolbar } from '../../../sections/@dashboard/student-list';
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
   { id: 'title', label: 'Title', alignRight: false },
-  { id: 'isPublic', label: 'Document Type', alignRight: false },
+  { id: 'isPublic', label: 'Student Type', alignRight: false },
   { id: 'createdAt', label: 'Created At', alignRight: false },
   { id: '' }
 ];
 
 // ----------------------------------------------------------------------
-export default function DocumentList({ documentList, isLoading, onDelete }) {
+export default function StudentList({ studentList, isLoading, onDelete }) {
   const {
     dense,
     page,
@@ -72,10 +72,10 @@ export default function DocumentList({ documentList, isLoading, onDelete }) {
   const [filterName, setFilterName] = useState('');
 
   useEffect(() => {
-    if (documentList.length) {
-      setTableData(documentList);
+    if (studentList.length) {
+      setTableData(studentList);
     }
-  }, [documentList]);
+  }, [studentList]);
 
   const handleFilterName = (filterName) => {
     setFilterName(filterName);
@@ -96,7 +96,7 @@ export default function DocumentList({ documentList, isLoading, onDelete }) {
   };
 
   const handleEditRow = (id) => {
-    navigate(PATH_DASHBOARD.document.edit(id));
+    navigate(PATH_DASHBOARD.student.edit(id));
   };
 
   const dataFiltered = applySortFilter({
@@ -111,7 +111,7 @@ export default function DocumentList({ documentList, isLoading, onDelete }) {
 
   return (
     <Card>
-      <DocumentTableToolbar filterName={filterName} onFilterName={handleFilterName} />
+      <StudentTableToolbar filterName={filterName} onFilterName={handleFilterName} />
 
       <Scrollbar>
         <TableContainer sx={{ minWidth: 960, position: 'relative' }}>
@@ -157,7 +157,7 @@ export default function DocumentList({ documentList, isLoading, onDelete }) {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) =>
                   row ? (
-                    <DocumentTableRow
+                    <StudentTableRow
                       key={index}
                       row={row}
                       selected={selected.includes(row._id)}
@@ -199,9 +199,9 @@ export default function DocumentList({ documentList, isLoading, onDelete }) {
   );
 }
 
-DocumentList.propTypes = {
+StudentList.propTypes = {
   isLoading: PropTypes.bool,
-  documentList: PropTypes.array,
+  studentList: PropTypes.array,
   onDelete: PropTypes.func
 };
 

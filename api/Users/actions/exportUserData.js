@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 
 import JSZip from 'jszip';
-import Documents from '../../Documents/Documents';
+import Students from '../../Students/Students';
 
 let action;
 
@@ -13,21 +13,21 @@ const generateZip = (zip) => {
   }
 };
 
-const addDocumentsToZip = (documents, zip) => {
+const addStudentsToZip = (students, zip) => {
   try {
-    documents.forEach((document) => {
-      zip.file(`${document.title}.txt`, `${document.title}\n\n${document.body}`);
+    students.forEach((student) => {
+      zip.file(`${student.title}.txt`, `${student.title}\n\n${student.body}`);
     });
   } catch (exception) {
-    throw new Error(`[exportUserData.addDocumentsToZip] ${exception.message}`);
+    throw new Error(`[exportUserData.addStudentsToZip] ${exception.message}`);
   }
 };
 
-const getDocuments = ({ _id }) => {
+const getStudents = ({ _id }) => {
   try {
-    return Documents.find({ owner: _id }).fetch();
+    return Students.find({ owner: _id }).fetch();
   } catch (exception) {
-    throw new Error(`[exportUserData.getDocuments] ${exception.message}`);
+    throw new Error(`[exportUserData.getStudents] ${exception.message}`);
   }
 };
 
@@ -44,8 +44,8 @@ const exportUserData = (options) => {
   try {
     validateOptions(options);
     const zip = new JSZip();
-    const documents = getDocuments(options.user);
-    addDocumentsToZip(documents, zip);
+    const students = getStudents(options.user);
+    addStudentsToZip(students, zip);
     generateZip(zip);
   } catch (exception) {
     action.reject(`[exportUserData] ${exception.message}`);

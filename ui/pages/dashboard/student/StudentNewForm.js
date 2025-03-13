@@ -23,10 +23,10 @@ import Iconify from '../../../components/Iconify';
 
 // mutations
 import {
-  addDocument as addDocumentMutation,
-  updateDocument as updateDocumentMutation
-} from '../../../_mutations/Documents.gql';
-import { documents as documentsQuery } from '../../../_queries/Documents.gql';
+  addStudent as addStudentMutation,
+  updateStudent as updateStudentMutation
+} from '../../../_mutations/Students.gql';
+import { students as studentsQuery } from '../../../_queries/Students.gql';
 
 // ----------------------------------------------------------------------
 
@@ -38,21 +38,21 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-DocumentNewEditForm.propTypes = {
+StudentNewEditForm.propTypes = {
   isEdit: PropTypes.bool,
-  currentDocument: PropTypes.object
+  currentStudent: PropTypes.object
 };
 
-export default function DocumentNewEditForm({ isEdit, currentDocument }) {
-  const [addDocument] = useMutation(addDocumentMutation);
-  const [updateDocument] = useMutation(updateDocumentMutation);
+export default function StudentNewEditForm({ isEdit, currentStudent }) {
+  const [addStudent] = useMutation(addStudentMutation);
+  const [updateStudent] = useMutation(updateStudentMutation);
   const navigate = useNavigate();
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const [coverImg, setCoverImg] = useState('');
 
-  const NewDocumentSchema = Yup.object().shape({
+  const NewStudentSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
     body: Yup.string().required('Description is required'),
     cover: Yup.mixed().required('Cover is required')
@@ -60,16 +60,16 @@ export default function DocumentNewEditForm({ isEdit, currentDocument }) {
 
   const defaultValues = useMemo(
     () => ({
-      title: currentDocument?.title || '',
-      body: currentDocument?.body || '',
-      cover: (currentDocument?.cover && currentDocument?.cover.url) || null,
-      isPublic: currentDocument?.isPublic || false
+      title: currentStudent?.title || '',
+      body: currentStudent?.body || '',
+      cover: (currentStudent?.cover && currentStudent?.cover.url) || null,
+      isPublic: currentStudent?.isPublic || false
     }),
-    [currentDocument]
+    [currentStudent]
   );
 
   const methods = useForm({
-    resolver: yupResolver(NewDocumentSchema),
+    resolver: yupResolver(NewStudentSchema),
     defaultValues
   });
 
@@ -81,13 +81,13 @@ export default function DocumentNewEditForm({ isEdit, currentDocument }) {
   } = methods;
 
   useEffect(() => {
-    if (isEdit && currentDocument) {
+    if (isEdit && currentStudent) {
       reset(defaultValues);
     }
     if (!isEdit) {
       reset(defaultValues);
     }
-  }, [isEdit, currentDocument]);
+  }, [isEdit, currentStudent]);
 
   const onSubmit = async (values) => {
     try {
@@ -101,32 +101,32 @@ export default function DocumentNewEditForm({ isEdit, currentDocument }) {
         };
       } else {
         cover = {
-          url: currentDocument.cover.url,
-          public_id: currentDocument.cover.public_id
+          url: currentStudent.cover.url,
+          public_id: currentStudent.cover.public_id
         };
       }
 
-      const mutation = isEdit ? updateDocument : addDocument;
-      const documentToAddOrUpdate = {
+      const mutation = isEdit ? updateStudent : addStudent;
+      const studentToAddOrUpdate = {
         title,
         body,
         cover
       };
 
       if (isEdit) {
-        documentToAddOrUpdate.isPublic = isPublic;
-        documentToAddOrUpdate._id = currentDocument._id;
-        if (coverImg !== '' && currentDocument.cover) {
-          const { public_id } = currentDocument.cover;
+        studentToAddOrUpdate.isPublic = isPublic;
+        studentToAddOrUpdate._id = currentStudent._id;
+        if (coverImg !== '' && currentStudent.cover) {
+          const { public_id } = currentStudent.cover;
           await Cloudinary.delete(public_id);
         }
       }
 
       mutation({
         variables: {
-          ...documentToAddOrUpdate
+          ...studentToAddOrUpdate
         },
-        refetchQueries: [{ query: documentsQuery }]
+        refetchQueries: [{ query: studentsQuery }]
       }).then(() => {
         reset();
         enqueueSnackbar(!isEdit ? 'Created successfully!' : 'Updated successfully!', {
@@ -138,7 +138,7 @@ export default function DocumentNewEditForm({ isEdit, currentDocument }) {
             </IconButton>
           )
         });
-        navigate(PATH_DASHBOARD.document.root);
+        navigate(PATH_DASHBOARD.student.root);
       });
     } catch (error) {
       console.error(error);
@@ -175,10 +175,10 @@ export default function DocumentNewEditForm({ isEdit, currentDocument }) {
         <Grid item xs={12} md={12}>
           <Card sx={{ p: 3 }}>
             <Stack spacing={3}>
-              <RHFSwitch name="isPublic" label="Public Document" />
-              <RHFTextField name="title" label="Document Title" />
+              <RHFSwitch name="isPublic" label="Public Student" />
+              <RHFTextField name="title" label="Student Title" />
               <div>
-                <LabelStyle>Document Content</LabelStyle>
+                <LabelStyle>Student Content</LabelStyle>
                 <RHFEditor simple name="body" />
               </div>
               <RHFUploadSingleFile name="cover" accept="image/*" maxSize={3145728} onDrop={handleDrop} />

@@ -2,7 +2,7 @@ export default `
   type Comment {
     _id: String
     user: User
-    documentId: String
+    studentId: String
     comment: String
     createdAt: String
   }

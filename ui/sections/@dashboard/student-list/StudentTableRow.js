@@ -15,17 +15,17 @@ import { fDate } from '../../../utils/formatTime';
 
 // ----------------------------------------------------------------------
 
-DocumentTableRow.propTypes = {
+StudentTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onSelectRow: PropTypes.func,
   onDeleteRow: PropTypes.func
 };
 
-export default function DocumentTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
+export default function StudentTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
   const { title, isPublic, cover, createdAt } = row;
 
-  const mockImageUrl = '/assets/document.jpg';
+  const mockImageUrl = '/assets/student.jpg';
 
   const [openMenu, setOpenMenuActions] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);

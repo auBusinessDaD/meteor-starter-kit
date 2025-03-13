@@ -7,12 +7,12 @@ import Iconify from '../../../components/Iconify';
 
 // ----------------------------------------------------------------------
 
-DocumentTableToolbar.propTypes = {
+StudentTableToolbar.propTypes = {
   filterName: PropTypes.string,
   onFilterName: PropTypes.func,
 };
 
-export default function DocumentTableToolbar({ filterName, onFilterName }) {
+export default function StudentTableToolbar({ filterName, onFilterName }) {
   return (
     <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ py: 2.5, px: 3 }}>
       <TextField

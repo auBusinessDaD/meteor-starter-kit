@@ -1,0 +1,86 @@
+[create these folders]
+./api/Flubby/
+
+./api/Flubby/server/
+
+./ui/pages/dashboard/flubby/
+
+./ui/sections/@dashboard/flubby-list/
+
+
+[Create these files]
+./api/Flubby/
+	Flubby.js
+	mutations.js
+	queries.js
+	types
+
+./api/Flubby/server/
+	indexes.js
+
+./ui/_fragments/
+	Flubby.gql
+
+./ui/_mutations/
+	Flubby.gql
+
+./ui/_queries/
+	Flubby.gql
+
+./ui/pages/dashboard/flubby/
+	index.js
+	FlubbyCreate.js
+	FlubbyList.js
+	FlubbyNewForm.js
+
+./ui/sections/@dashboard/flubby-list/
+	index.js
+	FlubbyTableRow.js
+	FlubbyTableToolbar.js
+
+[Modify these files]
+./api/ReferenceTables/
+	mutations.js
+	queries.js
+	types.js
+
+./ui/_fragments/
+	AnyReferenceTables.gql
+
+./ui/_mutations/
+	AnyReferenceTables.gql
+
+./ui/_queries/
+	AnyReferenceTables.gql
+
+./ui/layouts/dashboard/
+	NavConfig.js
+
+./ui/layouts/main/
+	MenuDesktop.js
+	MenuMobile.js
+
+./ui/routes/
+	index.js
+	paths.js
+
+
+[only change if you want seed data created and populated]
+./startup/server/
+	api.js
+	fictures.js
+
+
+[unsure if needs to be changed for every new collection]
+./api/OAuth/
+	queries.js
+
+
+[not needed to be changed for every new collection]
+./api/Users/actions/
+	exportUserData.js
+	removeUser.js
+	sendWelcomeEmail.js
+
+./private/email-templates/
+	welcome.txt
