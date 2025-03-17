@@ -1,8 +1,0 @@
-fragment StudentAttributes on Student {
-	_id
-	code
-	givenName
-	familyName
-	updatedAt
-	createdAt
-}

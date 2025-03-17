@@ -1,29 +1,24 @@
 import PropTypes from 'prop-types';
-import { sentenceCase } from 'change-case';
 import React, { useState } from 'react';
 // @mui
 import { TableRow, TableCell, MenuItem, Checkbox, Typography } from '@mui/material';
 
 // components
-import Label from '../../../components/Label';
 import { TableMoreMenu } from '../../../components/table';
 import Iconify from '../../../components/Iconify';
 import ConfirmDialog from '../../../components/ConfirmDialog';
 
-// utils
-import { fDate } from '../../../utils/formatTime';
-
 // ----------------------------------------------------------------------
 
-StudentTableRow.propTypes = {
+RatingTableRow.propTypes = {
   row: PropTypes.object,
   selected: PropTypes.bool,
   onSelectRow: PropTypes.func,
   onDeleteRow: PropTypes.func
 };
 
-export default function StudentTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
-  const { code, givenName, familyName } = row;
+export default function RatingTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
+  const { Rating, Description, Colour } = row;
 
   const [openMenu, setOpenMenuActions] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -58,17 +53,17 @@ export default function StudentTableRow({ row, selected, onEditRow, onSelectRow,
       </TableCell>
       <TableCell sx={{ display: 'flex', alignItems: 'center' }}>
         <Typography variant="subtitle2" noWrap>
-          {code}
+          {Rating}
         </Typography>
       </TableCell>
       <TableCell align="left">
         <Typography variant="subtitle3" noWrap>
-          {givenName}
+          {Description}
         </Typography>
       </TableCell>
       <TableCell align="left">
         <Typography variant="subtitle3" noWrap>
-          {familyName}
+          {Colour}
         </Typography>
       </TableCell>
       <TableCell align="right">

@@ -39,11 +39,11 @@ export const PATH_DASHBOARD = {
   analytics: path(ROOTS_DASHBOARD, '/analytics'),
   profile: path(ROOTS_DASHBOARD, '/profile'),
 
-  // students
-  student: {
-    root: path(ROOTS_DASHBOARD, '/students'),
-    create: path(ROOTS_DASHBOARD, '/students/create'),
-    edit: (name) => path(ROOTS_DASHBOARD, `/students/${name}/edit`),
+  // ratings
+  rating: {
+    root: path(ROOTS_DASHBOARD, '/ratings'),
+    create: path(ROOTS_DASHBOARD, '/ratings/create'),
+    edit: (name) => path(ROOTS_DASHBOARD, `/ratings/${name}/edit`),
   },
 
   // users

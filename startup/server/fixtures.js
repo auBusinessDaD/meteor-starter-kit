@@ -1,52 +1,5 @@
 import seeder from '@cleverbeagle/seeder';
 import { Meteor } from 'meteor/meteor';
-import Students from '../../api/Students/Students';
-import Comments from '../../api/Comments/Comments';
-
-const commentsSeed = (userId, date, studentId) => {
-  seeder(Comments, {
-    seedIfExistingData: true,
-    environments: ['development', 'staging', 'production'],
-    data: {
-      dynamic: {
-        count: 3,
-        seed(commentIteration, faker) {
-          return {
-            userId,
-            studentId,
-            comment: faker.hacker.phrase(),
-            createdAt: date,
-          };
-        },
-      },
-    },
-  });
-};
-
-const studentsSeed = (userId) => {
-  seeder(Students, {
-    seedIfExistingData: true,
-    environments: ['development', 'staging', 'production'],
-    data: {
-      dynamic: {
-        count: 5,
-        seed(iteration) {
-          const date = new Date().toISOString();
-          return {
-            createdAt: date,
-            updatedAt: date,
-            code: `student-${iteration + 1}`,
-            title: `Alex #${iteration + 1}`,
-            body: `Smith #${iteration + 1}`,
-            dependentData(studentId) {
-              commentsSeed(userId, date, studentId);
-            },
-          };
-        },
-      },
-    },
-  });
-};
 
 seeder(Meteor.users, {
   seedIfExistingData: true,
@@ -63,9 +16,6 @@ seeder(Meteor.users, {
           },
         },
         roles: ['admin'],
-        dependentData(userId) {
-          studentsSeed(userId);
-        },
       },
     ],
     dynamic: {
@@ -82,9 +32,6 @@ seeder(Meteor.users, {
             },
           },
           roles: ['user'],
-          dependentData(userId) {
-            studentsSeed(userId);
-          },
         };
       },
     },

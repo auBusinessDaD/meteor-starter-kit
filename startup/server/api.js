@@ -9,9 +9,9 @@ import UserSettingsTypes from '../../api/UserSettings/types';
 import UserSettingsQueries from '../../api/UserSettings/queries';
 import UserSettingsMutations from '../../api/UserSettings/mutations';
 
-import StudentTypes from '../../api/Students/types';
-import StudentQueries from '../../api/Students/queries';
-import StudentMutations from '../../api/Students/mutations';
+import RatingTypes from '../../api/Ratings/types';
+import RatingQueries from '../../api/Ratings/queries';
+import RatingMutations from '../../api/Ratings/mutations';
 
 import CommentTypes from '../../api/Comments/types';
 import CommentQueries from '../../api/Comments/queries';
@@ -19,7 +19,7 @@ import CommentMutations from '../../api/Comments/mutations';
 
 import OAuthQueries from '../../api/OAuth/queries';
 
-import '../../api/Students/server/indexes';
+import '../../api/Ratings/server/indexes';
 import '../../api/webhooks';
 
 import '../../api/App/server/publications';
@@ -30,13 +30,13 @@ import '../../api/Users/methods';
 const schema = {
   typeDefs: gql`
     ${UserTypes}
-    ${StudentTypes}
+    ${RatingTypes}
     ${CommentTypes}
     ${UserSettingsTypes}
 
     type Query {
-      students: [Student]
-      student(_id: String): Student
+      ratings: [Rating]
+      rating(_id: String): Rating
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
       userSettings: [UserSetting]
@@ -45,10 +45,10 @@ const schema = {
     }
 
     type Mutation {
-      addStudent(code: String, givenName: String, familyName: String): Student
-      updateStudent(_id: String!, code: String, givenName: String, familyName: String): Student
-      removeStudent(_id: String!): Student
-      addComment(studentId: String!, comment: String!): Comment
+      addRating(Rating: String!, Description: String!, Colour: String!): Rating
+      updateRating(_id: String!, Rating: String!, Description: String!, Colour: String!): Rating
+      removeRating(_id: String!): Rating
+      addComment(ratingId: String!, comment: String!): Comment
       removeComment(commentId: String!): Comment
       updateUser(user: UserInput): User
       removeUser(_id: String): User
@@ -60,18 +60,18 @@ const schema = {
     }
 
     type Subscription {
-      commentAdded(studentId: String!): Comment
+      commentAdded(ratingId: String!): Comment
     }
   `,
   resolvers: {
     Query: {
-      ...StudentQueries,
+      ...RatingQueries,
       ...UserQueries,
       ...UserSettingsQueries,
       ...OAuthQueries,
     },
     Mutation: {
-      ...StudentMutations,
+      ...RatingMutations,
       ...CommentMutations,
       ...UserMutations,
       ...UserSettingsMutations,

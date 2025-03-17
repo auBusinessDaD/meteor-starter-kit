@@ -1,0 +1,34 @@
+mutation addRating(
+  $Rating: String!,
+  $Description: String!,
+  $Colour: String!
+) {
+  addRating(Rating: $Rating, Description: $Description, Colour: $Colour) {
+    _id
+    Rating
+    Description
+    Colour
+  }
+}
+
+mutation updateRating(
+  $_id: String!,
+  $Rating: String!,
+  $Description: String!,
+  $Colour: String!
+) {
+  updateRating(Rating: $Rating, Description: $Description, Colour: $Colour) {
+    _id
+    Rating
+    Description
+    Colour
+  }
+}
+
+mutation removeRating(
+  $_id: String!
+) {
+  removeRating(_id: $_id) {
+    _id
+  }
+}

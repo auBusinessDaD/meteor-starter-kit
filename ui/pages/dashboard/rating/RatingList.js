@@ -32,19 +32,19 @@ import {
 import { PATH_DASHBOARD } from '../../../routes/paths';
 
 // sections
-import { StudentTableRow, StudentTableToolbar } from '../../../sections/@dashboard/student-list';
+import { RatingTableRow, RatingTableToolbar } from '../../../sections/@dashboard/rating-list';
 
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'code', label: 'Student Code', alignRight: false },
-  { id: 'givenName', label: 'Given Name', alignRight: false },
-  { id: 'familyName', label: 'Family Name', alignRight: false },
+  { id: 'Rating', label: 'Rating', alignRight: false },
+  { id: 'Description', label: 'Description', alignRight: false },
+  { id: 'Colour', label: 'Colour', alignRight: false },
   { id: '' }
 ];
 
 // ----------------------------------------------------------------------
-export default function StudentList({ studentList, isLoading, onDelete }) {
+export default function RatingList({ ratingList, isLoading, onDelete }) {
   const {
     dense,
     page,
@@ -72,10 +72,10 @@ export default function StudentList({ studentList, isLoading, onDelete }) {
   const [filterName, setFilterName] = useState('');
 
   useEffect(() => {
-    if (studentList.length) {
-      setTableData(studentList);
+    if (ratingList.length) {
+      setTableData(ratingList);
     }
-  }, [studentList]);
+  }, [ratingList]);
 
   const handleFilterName = (filterName) => {
     setFilterName(filterName);
@@ -96,7 +96,7 @@ export default function StudentList({ studentList, isLoading, onDelete }) {
   };
 
   const handleEditRow = (id) => {
-    navigate(PATH_DASHBOARD.student.edit(id));
+    navigate(PATH_DASHBOARD.rating.edit(id));
   };
 
   const dataFiltered = applySortFilter({
@@ -111,7 +111,7 @@ export default function StudentList({ studentList, isLoading, onDelete }) {
 
   return (
     <Card>
-      <StudentTableToolbar filterName={filterName} onFilterName={handleFilterName} />
+      <RatingTableToolbar filterName={filterName} onFilterName={handleFilterName} />
 
       <Scrollbar>
         <TableContainer sx={{ minWidth: 960, position: 'relative' }}>
@@ -157,7 +157,7 @@ export default function StudentList({ studentList, isLoading, onDelete }) {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) =>
                   row ? (
-                    <StudentTableRow
+                    <RatingTableRow
                       key={index}
                       row={row}
                       selected={selected.includes(row._id)}
@@ -199,9 +199,9 @@ export default function StudentList({ studentList, isLoading, onDelete }) {
   );
 }
 
-StudentList.propTypes = {
+RatingList.propTypes = {
   isLoading: PropTypes.bool,
-  studentList: PropTypes.array,
+  ratingList: PropTypes.array,
   onDelete: PropTypes.func
 };
 

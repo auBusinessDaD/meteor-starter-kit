@@ -16,42 +16,42 @@ import Page from '../../../components/Page';
 import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 
 // sections
-import StudentNewForm from './StudentNewForm';
+import RatingNewForm from './RatingNewForm';
 
 // queries
-import { editStudent as editStudentQuery } from '../../../_queries/Students.gql';
+import { editRating as editRatingQuery } from '../../../_queries/Ratings.gql';
 
 // ----------------------------------------------------------------------
 
-export default function Student() {
-  const { studentId } = useParams();
+export default function Rating() {
+  const { ratingId } = useParams();
   const { pathname } = useLocation();
   const isEdit = !!pathname.includes('edit');
-  const { data } = useQuery(editStudentQuery, { variables: { _id: studentId } });
-  const currentStudent = (isEdit && data && data.student) || {};
+  const { data } = useQuery(editRatingQuery, { variables: { _id: ratingId } });
+  const currentRating = (isEdit && data && data.rating) || {};
 
   return (
-    <Page title="Student">
+    <Page title="Rating">
       <Container maxWidth="lg">
         <HeaderBreadcrumbs
-          heading="Students"
+          heading="Ratings"
           links={[
             { name: 'Dashboard', href: PATH_DASHBOARD.root },
-            { name: 'Students', href: PATH_DASHBOARD.student.root },
-            { name: isEdit ? 'Edit Student' : 'New Student' },
+            { name: 'Ratings', href: PATH_DASHBOARD.rating.root },
+            { name: isEdit ? 'Edit Rating' : 'New Rating' },
           ]}
           action={
             <Button
               variant="contained"
               component={RouterLink}
-              to={PATH_DASHBOARD.student.root}
+              to={PATH_DASHBOARD.rating.root}
               startIcon={<ArrowBackIosNewIcon />}
             >
               Back
             </Button>
           }
         />
-        <StudentNewForm currentStudent={currentStudent} isEdit={isEdit} />
+        <RatingNewForm currentRating={currentRating} isEdit={isEdit} />
       </Container>
     </Page>
   );

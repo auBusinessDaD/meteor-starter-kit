@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 
 import JSZip from 'jszip';
-import Students from '../../Students/Students';
+import Ratings from '../../Ratings/Ratings';
 import checkIfAuthorized, { isAdmin } from './checkIfAuthorized';
 
 let action;
@@ -14,21 +14,21 @@ const generateZip = (zip) => {
   }
 };
 
-const addStudentsToZip = (students, zip) => {
+const addRatingsToZip = (ratings, zip) => {
   try {
-    students.forEach((student) => {
-      zip.file(`${student.code}.txt`, `${student.code}\n\n${student.givenName}\n\n${student.familyName}`);
+    ratings.forEach((rating) => {
+      zip.file(`${rating.Rating}.txt`, `${rating.Rating}\n\n${rating.Description}\n\n${rating.Colour}`);
     });
   } catch (exception) {
-    throw new Error(`[exportUserData.addStudentsToZip] ${exception.message}`);
+    throw new Error(`[exportUserData.addRatingsToZip] ${exception.message}`);
   }
 };
 
-const getStudents = async () => {
+const getRatings = async () => {
   try {
-    return await Students.find({}, { fields: { code: 1, givenName: 1, familyName: 1 } }).fetch();
+    return await Ratings.find({}, { fields: { Rating: 1, Description: 1, Colour: 1 } }).fetch();
   } catch (exception) {
-    throw new Error(`[exportUserData.getStudents] ${exception.message}`);
+    throw new Error(`[exportUserData.getRatings] ${exception.message}`);
   }
 };
 
@@ -51,8 +51,8 @@ const exportUserData = (options) => {
   try {
     validateOptions(options);
     const zip = new JSZip();
-    const students = getStudents(options.user);
-    addStudentsToZip(students, zip);
+    const ratings = getRatings(options.user);
+    addRatingsToZip(ratings, zip);
     generateZip(zip);
   } catch (exception) {
     action.reject(`[exportUserData] ${exception.message}`);

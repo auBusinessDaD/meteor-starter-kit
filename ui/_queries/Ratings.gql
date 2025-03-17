@@ -1,0 +1,22 @@
+#import "../_fragments/Ratings.gql"
+
+query ratings {
+  ratings {
+    _id
+    Rating
+    Description
+    Colour
+  }
+}
+
+query editRating($_id: String) {
+  rating(_id: $_id) {
+    ...RatingAttributes
+  }
+}
+
+query rating($_id: String, $sortBy: String) {
+  rating(_id: $_id) {
+    ...RatingAttributes
+  }
+}

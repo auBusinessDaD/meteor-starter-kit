@@ -26,10 +26,10 @@ import Iconify from '../../../components/Iconify';
 
 // mutations
 import {
-  addStudent as addStudentMutation,
-  updateStudent as updateStudentMutation
-} from '../../../_mutations/Students.gql';
-import { students as studentsQuery } from '../../../_queries/Students.gql';
+  addRating as addRatingMutation,
+  updateRating as updateRatingMutation
+} from '../../../_mutations/Ratings.gql';
+import { ratings as ratingsQuery } from '../../../_queries/Ratings.gql';
 
 // ----------------------------------------------------------------------
 
@@ -41,34 +41,34 @@ const LabelStyle = styled(Typography)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-StudentNewEditForm.propTypes = {
+RatingNewEditForm.propTypes = {
   isEdit: PropTypes.bool,
-  currentStudent: PropTypes.object
+  currentRating: PropTypes.object
 };
 
-export default function StudentNewEditForm({ isEdit, currentStudent }) {
-  const [addStudent] = useMutation(addStudentMutation);
-  const [updateStudent] = useMutation(updateStudentMutation);
+export default function RatingNewEditForm({ isEdit, currentRating }) {
+  const [addRating] = useMutation(addRatingMutation);
+  const [updateRating] = useMutation(updateRatingMutation);
   const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
-  const NewStudentSchema = Yup.object().shape({
-    code: Yup.string().required('Student Code is required'),
-    givenName: Yup.string().required('Given Name is required'),
-    familyName: Yup.mixed().required('Family Name is required')
+  const NewRatingSchema = Yup.object().shape({
+    Rating: Yup.string().required('Rating is required'),
+    Description: Yup.string().required('A description is required'),
+    Colour: Yup.string().required('A colour needs to be selected')
   });
 
   const defaultValues = useMemo(
     () => ({
-      code: currentStudent?.code || '',
-      givenName: currentStudent?.givenName || '',
-      familyName: currentStudent?.familyName || ''
+      Rating: currentRating?.Rating || '',
+      Description: currentRating?.Description || '',
+      Colour: currentRating?.Colour || ''
     }),
-    [currentStudent]
+    [currentRating]
   );
 
   const methods = useForm({
-    resolver: yupResolver(NewStudentSchema),
+    resolver: yupResolver(NewRatingSchema),
     defaultValues
   });
 
@@ -79,30 +79,34 @@ export default function StudentNewEditForm({ isEdit, currentStudent }) {
   } = methods;
 
   useEffect(() => {
-    if (isEdit && currentStudent) {
+    if (isEdit && currentRating) {
       reset(defaultValues);
     }
     if (!isEdit) {
       reset(defaultValues);
     }
-  }, [isEdit, currentStudent]);
+  }, [isEdit, currentRating]);
 
   const onSubmit = async (values) => {
     try {
-      const { code, givenName, familyName } = values;
+      const { Rating, Description, Colour } = values;
 
-      const mutation = isEdit ? updateStudent : addStudent;
-      const studentToAddOrUpdate = {
-        code,
-        givenName,
-        familyName
+      const mutation = isEdit ? updateRating : addRating;
+      const ratingToAddOrUpdate = {
+        Rating,
+        Description,
+        Colour
+      };
+
+      if (isEdit) {
+        ratingToAddOrUpdate._id = currentRating._id;
       };
 
       mutation({
         variables: {
-          ...studentToAddOrUpdate
+          ...ratingToAddOrUpdate
         },
-        refetchQueries: [{ query: studentsQuery }]
+        refetchQueries: [{ query: ratingsQuery }]
       }).then(() => {
         reset();
         enqueueSnackbar(!isEdit ? 'Created successfully!' : 'Updated successfully!', {
@@ -114,10 +118,10 @@ export default function StudentNewEditForm({ isEdit, currentStudent }) {
             </IconButton>
           )
         });
-        navigate(PATH_DASHBOARD.student.root);
+        navigate(PATH_DASHBOARD.rating.root);
       });
     } catch (error) {
-      console.error(error);
+      console.error('Error in onSubmit:', error);
     }
   };
 
@@ -127,13 +131,13 @@ export default function StudentNewEditForm({ isEdit, currentStudent }) {
         <Grid item xs={12} md={12}>
           <Card sx={{ p: 3 }}>
             <Stack spacing={3}>
-              <RHFTextField name="code" label="Student Code" />
-              <RHFTextField name="givenName" label="Given Name" />
-              <RHFTextField name="familyName" label="Family Name" />
+              <RHFTextField name="Rating" label="Rating" />
+              <RHFTextField name="Description" label="Description" />
+              <RHFTextField name="Colour" label="Colour" />
             </Stack>
             <Box m={2} />
             <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
-              {!isEdit ? 'Create Student' : 'Save Changes'}
+              {!isEdit ? 'Create Rating' : 'Save Changes'}
             </LoadingButton>
           </Card>
         </Grid>

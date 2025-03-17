@@ -1,0 +1,6 @@
+fragment RatingAttributes on Rating {
+	_id
+	Rating
+	Description
+	Colour
+}

@@ -8,12 +8,12 @@ import Iconify from '../../../components/Iconify';
 
 // ----------------------------------------------------------------------
 
-StudentTableToolbar.propTypes = {
+RatingTableToolbar.propTypes = {
   filterName: PropTypes.string,
   onFilterName: PropTypes.func,
 };
 
-export default function StudentTableToolbar({ filterName, onFilterName }) {
+export default function RatingTableToolbar({ filterName, onFilterName }) {
   return (
     <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ py: 2.5, px: 3 }}>
       <TextField
