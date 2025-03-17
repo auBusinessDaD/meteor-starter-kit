@@ -13,7 +13,7 @@
 	Flubby.js
 	mutations.js
 	queries.js
-	types
+	types.js
 
 ./api/Flubby/server/
 	indexes.js
@@ -68,7 +68,7 @@
 [only change if you want seed data created and populated]
 ./startup/server/
 	api.js
-	fictures.js
+	fixtures.js
 
 
 [unsure if needs to be changed for every new collection]

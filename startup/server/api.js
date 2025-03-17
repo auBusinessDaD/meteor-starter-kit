@@ -45,8 +45,8 @@ const schema = {
     }
 
     type Mutation {
-      addStudent(title: String, body: String, cover: CoverInput, isPublic: Boolean): Student
-      updateStudent(_id: String!, title: String, body: String, cover: CoverInput, isPublic: Boolean): Student
+      addStudent(code: String, givenName: String, familyName: String): Student
+      updateStudent(_id: String!, code: String, givenName: String, familyName: String): Student
       removeStudent(_id: String!): Student
       addComment(studentId: String!, comment: String!): Comment
       removeComment(commentId: String!): Comment
@@ -75,9 +75,6 @@ const schema = {
       ...CommentMutations,
       ...UserMutations,
       ...UserSettingsMutations,
-    },
-    Student: {
-      comments: CommentQueries.comments,
     },
     Comment: {
       user: UserQueries.user,

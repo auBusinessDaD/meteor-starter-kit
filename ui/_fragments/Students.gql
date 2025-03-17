@@ -1,12 +1,8 @@
 fragment StudentAttributes on Student {
 	_id
-	isPublic
-	title
-	body
-	cover {
-		url
-		public_id
-	}
+	code
+	givenName
+	familyName
 	updatedAt
 	createdAt
 }

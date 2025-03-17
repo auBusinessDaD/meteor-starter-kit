@@ -1,4 +1,4 @@
 import createIndex from '../../../modules/server/createIndex';
 import Students from '../Students';
 
-createIndex(Students, { owner: 1 });
+createIndex(Students, { code: 1 });

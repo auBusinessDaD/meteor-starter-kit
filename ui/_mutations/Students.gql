@@ -1,36 +1,37 @@
-mutation addStudent($title: String, $body: String, $cover: CoverInput) {
-  addStudent(title: $title, body: $body, cover: $cover) {
+mutation addStudent(
+  $code: String!,
+  $givenName: String!,
+  $familyName: String!
+) {
+  addStudent(code: $code, givenName: $givenName, familyName: $familyName) {
     _id
-    isPublic
-    title
-    body
-    cover {
-      url
-      public_id
-    }
+    code
+    givenName
+    familyName
     createdAt
     updatedAt
-    owner
   }
 }
 
-mutation updateStudent($_id: String!, $title: String, $body: String, $cover: CoverInput, $isPublic: Boolean) {
-  updateStudent(_id: $_id, title: $title, body: $body, cover: $cover, isPublic: $isPublic) {
+mutation updateStudent(
+  $_id: String!,
+  $code: String,
+  $givenName: String,
+  $familyName: String
+) {
+  updateStudent(_id: $_id, code: $code, givenName: $givenName, familyName: $familyName) {
     _id
-    isPublic
-    title
-    body
-    cover {
-      url
-      public_id
-    }
+    code
+    givenName
+    familyName
     createdAt
     updatedAt
-    owner
   }
 }
 
-mutation removeStudent($_id: String!) {
+mutation removeStudent(
+  $_id: String!
+) {
   removeStudent(_id: $_id) {
     _id
   }

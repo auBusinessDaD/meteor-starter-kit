@@ -37,9 +37,9 @@ import { StudentTableRow, StudentTableToolbar } from '../../../sections/@dashboa
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'title', label: 'Title', alignRight: false },
-  { id: 'isPublic', label: 'Student Type', alignRight: false },
-  { id: 'createdAt', label: 'Created At', alignRight: false },
+  { id: 'code', label: 'Student Code', alignRight: false },
+  { id: 'givenName', label: 'Given Name', alignRight: false },
+  { id: 'familyName', label: 'Family Name', alignRight: false },
   { id: '' }
 ];
 
@@ -63,7 +63,7 @@ export default function StudentList({ studentList, isLoading, onDelete }) {
     onChangePage,
     onChangeRowsPerPage
   } = useTable({
-    defaultOrderBy: 'title'
+    defaultOrderBy: 'familyName'
   });
 
   const navigate = useNavigate();

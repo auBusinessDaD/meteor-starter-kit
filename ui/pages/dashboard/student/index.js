@@ -6,6 +6,7 @@ import { Cloudinary } from 'meteor/socialize:cloudinary';
 
 // import queries
 import { useQuery, useMutation } from '@apollo/react-hooks';
+
 // @mui
 import { Button, Container, IconButton } from '@mui/material';
 
@@ -34,8 +35,8 @@ export default function Student() {
   const students = (data && data.students) || [];
 
   const deleteStudent = (_id) => {
-    const deleteDoc = students.find((doc) => doc._id === _id);
-    const public_id = deleteDoc && deleteDoc.cover && deleteDoc.cover.public_id;
+    const deleteStu = students.find((doc) => doc._id === _id);
+    const public_id = deleteStu && deleteStu.cover && deleteStu.cover.public_id;
     removeStudent({
       variables: {
         _id

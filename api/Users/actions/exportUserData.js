@@ -2,6 +2,7 @@
 
 import JSZip from 'jszip';
 import Students from '../../Students/Students';
+import checkIfAuthorized, { isAdmin } from './checkIfAuthorized';
 
 let action;
 
@@ -16,16 +17,16 @@ const generateZip = (zip) => {
 const addStudentsToZip = (students, zip) => {
   try {
     students.forEach((student) => {
-      zip.file(`${student.title}.txt`, `${student.title}\n\n${student.body}`);
+      zip.file(`${student.code}.txt`, `${student.code}\n\n${student.givenName}\n\n${student.familyName}`);
     });
   } catch (exception) {
     throw new Error(`[exportUserData.addStudentsToZip] ${exception.message}`);
   }
 };
 
-const getStudents = ({ _id }) => {
+const getStudents = async () => {
   try {
-    return Students.find({ owner: _id }).fetch();
+    return await Students.find({}, { fields: { code: 1, givenName: 1, familyName: 1 } }).fetch();
   } catch (exception) {
     throw new Error(`[exportUserData.getStudents] ${exception.message}`);
   }
@@ -41,6 +42,12 @@ const validateOptions = (options) => {
 };
 
 const exportUserData = (options) => {
+  checkIfAuthorized({
+    as: ['admin', () => !options.user._id],
+    userId: options.currentUser._id,
+    errorMessage: 'Sorry, you need to be an admin or the passed user to do this.',
+  });
+
   try {
     validateOptions(options);
     const zip = new JSZip();
@@ -52,8 +59,9 @@ const exportUserData = (options) => {
   }
 };
 
-export default (options) =>
-  new Promise((resolve, reject) => {
+export default (options) => {
+  return new Promise((resolve, reject) => {
     action = { resolve, reject };
     exportUserData(options);
   });
+};

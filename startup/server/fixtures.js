@@ -33,12 +33,11 @@ const studentsSeed = (userId) => {
         seed(iteration) {
           const date = new Date().toISOString();
           return {
-            isPublic: false,
             createdAt: date,
             updatedAt: date,
-            owner: userId,
-            title: `This seeding should be replaced #${iteration + 1}`,
-            body: `This is the body of student #${iteration + 1}`,
+            code: `student-${iteration + 1}`,
+            title: `Alex #${iteration + 1}`,
+            body: `Smith #${iteration + 1}`,
             dependentData(studentId) {
               commentsSeed(userId, date, studentId);
             },

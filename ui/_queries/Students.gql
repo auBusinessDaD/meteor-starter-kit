@@ -3,12 +3,9 @@
 query students {
   students {
     _id
-    isPublic
-    title
-    cover {
-      url
-      public_id
-    }
+    code
+    givenName
+    familyName
     updatedAt
     createdAt
   }
@@ -23,17 +20,5 @@ query editStudent($_id: String) {
 query student($_id: String, $sortBy: String) {
   student(_id: $_id) {
     ...StudentAttributes
-    comments(sortBy: $sortBy) {
-      _id
-      comment
-      createdAt
-      user {
-        _id
-        name {
-          first
-          last
-        }
-      }
-    }
   }
 }
