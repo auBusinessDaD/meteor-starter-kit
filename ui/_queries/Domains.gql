@@ -1,0 +1,22 @@
+#import "../_fragments/Domains.gql"
+
+query domains {
+  domains {
+    _id
+    Domain
+    Description
+    Teachers
+  }
+}
+
+query editDomain($_id: String) {
+  domain(_id: $_id) {
+    ...DomainAttributes
+  }
+}
+
+query domain($_id: String, $sortBy: String) {
+  domain(_id: $_id) {
+    ...DomainAttributes
+  }
+}

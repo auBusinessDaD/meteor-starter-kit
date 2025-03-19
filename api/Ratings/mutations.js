@@ -1,8 +1,11 @@
 import Ratings from './Ratings';
+import { isAdmin } from '../Users/actions/checkIfAuthorized';
 
 export default {
   addRating: async (root, args, context) => {
-    if (!context.user) throw new Error('Sorry, you must be logged in to add a new rating.');
+    if (!isAdmin(context.user._id)) {
+      throw new Error('Sorry, you must be an admin to remove a level.');
+    }
 
     const ratingId = await Ratings.insert({
       Rating: args.Rating,
@@ -14,7 +17,9 @@ export default {
     return newRating;
   },
   updateRating: async (root, args, context) => {
-    if (!context.user) throw new Error('Sorry, you must be logged in to update a rating.');
+    if (!isAdmin(context.user._id)) {
+      throw new Error('Sorry, you must be an admin to remove a level.');
+    }
 
     Ratings.update(
       { _id: args._id },
@@ -31,7 +36,9 @@ export default {
     return updatedRating;
   },
   removeRating: async (root, args, context) => {
-    if (!context.user) throw new Error('Sorry, you must be logged in to remove a rating.');
+    if (!isAdmin(context.user._id)) {
+      throw new Error('Sorry, you must be an admin to remove a level.');
+    }
 
     await Ratings.remove(args);
     return args;

@@ -1,0 +1,21 @@
+#import "../_fragments/Levels.gql"
+
+query levels {
+  levels {
+    _id
+    Level
+    Description
+  }
+}
+
+query editLevel($_id: String) {
+  level(_id: $_id) {
+    ...LevelAttributes
+  }
+}
+
+query level($_id: String, $sortBy: String) {
+  level(_id: $_id) {
+    ...LevelAttributes
+  }
+}

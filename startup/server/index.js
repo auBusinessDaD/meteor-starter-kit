@@ -24,9 +24,14 @@ Cloudinary.config({
 });
 
 Meteor.startup(() => {
-  if (!Accounts.findUserByEmail(SEED_EMAIL)) {
+  if (!Roles.getAllRoles().count()) {
     Roles.createRole('user');
+    Roles.createRole('teacher');
+    Roles.createRole('student');
     Roles.createRole('admin');
+  }
+
+  if (!Accounts.findUserByEmail(SEED_EMAIL)) {
     Accounts.createUser({
       email: SEED_EMAIL,
       password: SEED_PASSWORD,

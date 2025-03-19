@@ -147,7 +147,7 @@ function MenuMobileItem({ item, isOpen, onOpen }) {
     );
   }
 
-  if (title === 'Ratings') {
+  if (title === 'Ratings' || title === 'Levels' || title === 'Domains') {
     return (
       <ListItemStyle href={path} target="_blank" rel="noopener" component={Link}>
         <ListItemIcon>{icon}</ListItemIcon>

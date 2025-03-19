@@ -46,6 +46,20 @@ export const PATH_DASHBOARD = {
     edit: (name) => path(ROOTS_DASHBOARD, `/ratings/${name}/edit`),
   },
 
+  // levels
+  level: {
+    root: path(ROOTS_DASHBOARD, '/levels'),
+    create: path(ROOTS_DASHBOARD, '/levels/create'),
+    edit: (name) => path(ROOTS_DASHBOARD, `/levels/${name}/edit`),
+  },
+
+  // domains
+  domain: {
+    root: path(ROOTS_DASHBOARD, '/domains'),
+    create: path(ROOTS_DASHBOARD, '/domains/create'),
+    edit: (name) => path(ROOTS_DASHBOARD, `/domains/${name}/edit`),
+  },
+
   // users
   user: {
     root: path(ROOTS_DASHBOARD, '/users'),

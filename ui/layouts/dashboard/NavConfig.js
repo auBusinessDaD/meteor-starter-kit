@@ -17,16 +17,26 @@ const navConfig = [
         path: `${PATH_DASHBOARD.analytics}`,
         icon: getIcon('eva:pie-chart-2-fill'),
       },
-      {
-        title: 'ratings',
-        path: `${PATH_DASHBOARD.rating.root}`,
-        icon: getIcon('gala:file-doc'),
-      },
     ],
   },
   {
     subheader: 'Admin',
     items: [
+      {
+        title: 'ratings',
+        path: `${PATH_DASHBOARD.rating.root}`,
+        icon: getIcon('gala:file-doc'),
+      },
+      {
+        title: 'levels',
+        path: `${PATH_DASHBOARD.level.root}`,
+        icon: getIcon('gala:file-doc'),
+      },
+      {
+        title: 'domains',
+        path: `${PATH_DASHBOARD.domain.root}`,
+        icon: getIcon('gala:file-doc'),
+      },
       {
         title: 'users',
         path: `${PATH_DASHBOARD.user.root}`,

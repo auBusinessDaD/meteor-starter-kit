@@ -17,31 +17,31 @@ import HeaderBreadcrumbs from '../../../components/HeaderBreadcrumbs';
 import Iconify from '../../../components/Iconify';
 
 // sections
-import RatingList from './RatingList';
+import DomainList from './DomainList';
 
 // queries & mutations
-import { ratings as ratingsQuery } from '../../../_queries/Ratings.gql';
-import { removeRating as removeRatingMutation } from '../../../_mutations/Ratings.gql';
+import { domains as domainsQuery } from '../../../_queries/Domains.gql';
+import { removeDomain as removeDomainMutation } from '../../../_mutations/Domains.gql';
 // ----------------------------------------------------------------------
 
-export default function Rating() {
+export default function Domain() {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const [removeRating] = useMutation(removeRatingMutation);
+  const [removeDomain] = useMutation(removeDomainMutation);
 
-  const { loading, data } = useQuery(ratingsQuery);
+  const { loading, data } = useQuery(domainsQuery);
 
-  const ratings = (data && data.ratings) || [];
+  const domains = (data && data.domains) || [];
 
-  const deleteRating = (_id) => {
-    const deleteRat = ratings.find((doc) => doc._id === _id);
+  const deleteDomain = (_id) => {
+    const deleteLev = domains.find((doc) => doc._id === _id);
     
-    removeRating({
+    removeDomain({
       variables: {
         _id
       },
-      refetchQueries: [{ query: ratingsQuery }]
+      refetchQueries: [{ query: domainsQuery }]
     }).then(async (res) => {
-      if (deleteRat) {
+      if (deleteLev) {
         enqueueSnackbar('Deleted successfully!', {
           variant: 'success',
           autoHideDuration: 2500,
@@ -56,23 +56,23 @@ export default function Rating() {
   };
 
   return (
-    <Page title="Rating">
+    <Page title="Domain">
       <Container maxWidth="lg">
         <HeaderBreadcrumbs
-          heading="Ratings"
-          links={[{ name: 'Dashboard', href: PATH_DASHBOARD.root }, { name: 'Ratings' }]}
+          heading="Domains"
+          links={[{ name: 'Dashboard', href: PATH_DASHBOARD.root }, { name: 'Domains' }]}
           action={
             <Button
               variant="contained"
               component={RouterLink}
-              to={PATH_DASHBOARD.rating.create}
+              to={PATH_DASHBOARD.domain.create}
               startIcon={<Iconify icon="eva:plus-fill" />}
             >
-              New Rating
+              New Domain
             </Button>
           }
         />
-        <RatingList isLoading={loading} ratingList={ratings} onDelete={(id) => deleteRating(id)} />
+        <DomainList isLoading={loading} domainList={domains} onDelete={(id) => deleteDomain(id)} />
       </Container>
     </Page>
   );

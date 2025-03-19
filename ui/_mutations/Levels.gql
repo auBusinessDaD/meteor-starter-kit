@@ -1,0 +1,30 @@
+mutation addLevel(
+  $Level: String!,
+  $Description: String,
+) {
+  addLevel(Level: $Level, Description: $Description) {
+    _id
+    Level
+    Description
+  }
+}
+
+mutation updateLevel(
+  $_id: String!,
+  $Level: String!,
+  $Description: String
+) {
+  updateLevel(_id: $_id, Level: $Level, Description: $Description) {
+    _id
+    Level
+    Description
+  }
+}
+
+mutation removeLevel(
+  $_id: String!
+) {
+  removeLevel(_id: $_id) {
+    _id
+  }
+}

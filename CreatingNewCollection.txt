@@ -38,6 +38,7 @@
 	FlubbyTableRow.js
 	FlubbyTableToolbar.js
 
+
 [Modify these files]
 ./api/ReferenceTables/
 	mutations.js
@@ -53,22 +54,22 @@
 ./ui/_queries/
 	AnyReferenceTables.gql
 
+./startup/server/
+	api.js
+	fixtures.js
+
+
+[needs to be changed if adding navigation]
+./ui/routes/
+	index.js
+	paths.js
+
 ./ui/layouts/dashboard/
 	NavConfig.js
 
 ./ui/layouts/main/
 	MenuDesktop.js
 	MenuMobile.js
-
-./ui/routes/
-	index.js
-	paths.js
-
-
-[only change if you want seed data created and populated]
-./startup/server/
-	api.js
-	fixtures.js
 
 
 [unsure if needs to be changed for every new collection]

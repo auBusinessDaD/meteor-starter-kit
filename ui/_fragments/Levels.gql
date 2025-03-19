@@ -1,0 +1,5 @@
+fragment LevelAttributes on Level {
+	_id
+	Level
+	Description
+}

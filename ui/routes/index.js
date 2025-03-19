@@ -49,6 +49,16 @@ export default function Router() {
         { path: 'ratings/create', element: <RatingCreate /> },
         { path: 'ratings/:ratingId/edit', element: <RatingCreate /> },
 
+        // levels
+        { path: 'levels', element: <Levels /> },
+        { path: 'levels/create', element: <LevelCreate /> },
+        { path: 'levels/:levelId/edit', element: <LevelCreate /> },
+
+        // domains
+        { path: 'domains', element: <Domains /> },
+        { path: 'domains/create', element: <DomainCreate /> },
+        { path: 'domains/:domainId/edit', element: <DomainCreate /> },
+
         // Admin/users
         {
           path: 'users',
@@ -139,6 +149,14 @@ const Page404 = Loadable(lazy(() => import('../pages/other/Page404')));
 // ratings
 const Ratings = Loadable(lazy(() => import('../pages/dashboard/rating')));
 const RatingCreate = Loadable(lazy(() => import('../pages/dashboard/rating/RatingCreate')));
+
+// levels
+const Levels = Loadable(lazy(() => import('../pages/dashboard/level')));
+const LevelCreate = Loadable(lazy(() => import('../pages/dashboard/level/LevelCreate')));
+
+// domains
+const Domains = Loadable(lazy(() => import('../pages/dashboard/domain')));
+const DomainCreate = Loadable(lazy(() => import('../pages/dashboard/domain/DomainCreate')));
 
 // users
 const User = Loadable(lazy(() => import('../pages/dashboard/user')));

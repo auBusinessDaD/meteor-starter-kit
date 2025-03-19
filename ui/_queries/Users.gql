@@ -23,6 +23,25 @@ query users {
   }
 }
 
+query findUserByRole($role: String) {
+  findUserByRole(role: $role) {
+    total
+    users {
+      _id
+      name {
+        first
+        last
+      }
+      roles {
+        _id
+        name
+        inRole
+      }
+      emailAddress
+    }
+  }
+}
+
 query user($_id: String) {
   user(_id: $_id) {
     ...UserAttributes

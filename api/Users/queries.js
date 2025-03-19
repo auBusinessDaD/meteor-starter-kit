@@ -1,4 +1,5 @@
 import queryUsers from './actions/queryUsers';
+import queryByRoles from './actions/queryByRoles';
 import queryUser from './actions/queryUser';
 import exportUserData from './actions/exportUserData';
 // import mapMeteorUserToSchema from './actions/mapMeteorUserToSchema';
@@ -7,6 +8,10 @@ export default {
   users: async (parent, args, context) => {
     const users = await queryUsers({ currentUser: context.user });
     return users;
+  },
+  findUserByRole: async (parent, args, context) => {
+    const filteredUsers = await queryByRoles({ currentUser: context.user, role: args.role });
+    return filteredUsers;
   },
   user: async (parent, args, context) => {
     const userIdFromParentQuery = parent && parent.userId;

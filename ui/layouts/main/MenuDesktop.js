@@ -103,7 +103,7 @@ MenuDesktopItem.propTypes = {
 function MenuDesktopItem({ item, isHome, isOffset }) {
   const { title, path } = item;
 
-  if (title === 'Ratings') {
+  if (title === 'Ratings' || title === 'Levels' || title === 'Domains') {
     return (
       <LinkStyle
         href={path}

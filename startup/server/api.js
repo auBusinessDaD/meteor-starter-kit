@@ -13,9 +13,13 @@ import RatingTypes from '../../api/Ratings/types';
 import RatingQueries from '../../api/Ratings/queries';
 import RatingMutations from '../../api/Ratings/mutations';
 
-import CommentTypes from '../../api/Comments/types';
-import CommentQueries from '../../api/Comments/queries';
-import CommentMutations from '../../api/Comments/mutations';
+import LevelTypes from '../../api/Levels/types';
+import LevelQueries from '../../api/Levels/queries';
+import LevelMutations from '../../api/Levels/mutations';
+
+import DomainTypes from '../../api/Domains/types';
+import DomainQueries from '../../api/Domains/queries';
+import DomainMutations from '../../api/Domains/mutations';
 
 import OAuthQueries from '../../api/OAuth/queries';
 
@@ -31,14 +35,20 @@ const schema = {
   typeDefs: gql`
     ${UserTypes}
     ${RatingTypes}
-    ${CommentTypes}
+    ${LevelTypes}
+    ${DomainTypes}
     ${UserSettingsTypes}
 
     type Query {
       ratings: [Rating]
       rating(_id: String): Rating
+      levels: [Level]
+      level(_id: String): Level
+      domains: [Domain]
+      domain(_id: String): Domain
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
+      findUserByRole(role: String): Users
       userSettings: [UserSetting]
       exportUserData: UserDataExport
       oAuthServices(services: [String]): [String]
@@ -48,8 +58,12 @@ const schema = {
       addRating(Rating: String!, Description: String!, Colour: String!): Rating
       updateRating(_id: String!, Rating: String!, Description: String!, Colour: String!): Rating
       removeRating(_id: String!): Rating
-      addComment(ratingId: String!, comment: String!): Comment
-      removeComment(commentId: String!): Comment
+      addLevel(Level: String!, Description: String): Level
+      updateLevel(_id: String!, Level: String!, Description: String): Level
+      removeLevel(_id: String!): Level
+      addDomain(Domain: String!, Description: String, Teachers: [String]): Domain
+      updateDomain(_id: String!, Domain: String!, Description: String, Teachers: [String]): Domain
+      removeDomain(_id: String!): Domain
       updateUser(user: UserInput): User
       removeUser(_id: String): User
       addUserSetting(setting: UserSettingInput): UserSetting
@@ -58,26 +72,22 @@ const schema = {
       sendVerificationEmail: User
       sendWelcomeEmail: User
     }
-
-    type Subscription {
-      commentAdded(ratingId: String!): Comment
-    }
   `,
   resolvers: {
     Query: {
       ...RatingQueries,
+      ...LevelQueries,
+      ...DomainQueries,
       ...UserQueries,
       ...UserSettingsQueries,
       ...OAuthQueries,
     },
     Mutation: {
       ...RatingMutations,
-      ...CommentMutations,
+      ...LevelMutations,
+      ...DomainMutations,
       ...UserMutations,
       ...UserSettingsMutations,
-    },
-    Comment: {
-      user: UserQueries.user,
     },
   },
 };

@@ -1,0 +1,34 @@
+mutation addDomain(
+  $Domain: String!,
+  $Description: String,
+  $Teachers: [String]
+) {
+  addDomain(Domain: $Domain, Description: $Description, Teachers: $Teachers) {
+    _id
+    Domain
+    Description
+    Teachers
+  }
+}
+
+mutation updateDomain(
+  $_id: String!,
+  $Domain: String!,
+  $Description: String,
+  $Teachers: [String]
+) {
+  updateDomain(_id: $_id, Domain: $Domain, Description: $Description, Teachers: $Teachers) {
+    _id
+    Domain
+    Description
+    Teachers
+  }
+}
+
+mutation removeDomain(
+  $_id: String!
+) {
+  removeDomain(_id: $_id) {
+    _id
+  }
+}

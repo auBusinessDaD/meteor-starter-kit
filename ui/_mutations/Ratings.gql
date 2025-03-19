@@ -17,7 +17,7 @@ mutation updateRating(
   $Description: String!,
   $Colour: String!
 ) {
-  updateRating(Rating: $Rating, Description: $Description, Colour: $Colour) {
+  updateRating(_id: $_id, Rating: $Rating, Description: $Description, Colour: $Colour) {
     _id
     Rating
     Description

@@ -1,0 +1,6 @@
+fragment DomainAttributes on Domain {
+	_id
+	Domain
+	Description
+	Teachers
+}
