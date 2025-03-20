@@ -59,6 +59,16 @@ export default function Router() {
         { path: 'domains/create', element: <DomainCreate /> },
         { path: 'domains/:domainId/edit', element: <DomainCreate /> },
 
+        // strands
+        { path: 'strands', element: <Strands /> },
+        { path: 'strands/create', element: <StrandCreate /> },
+        { path: 'strands/:strandId/edit', element: <StrandCreate /> },
+
+        // units
+        { path: 'units', element: <Units /> },
+        { path: 'units/create', element: <UnitCreate /> },
+        { path: 'units/:unitId/edit', element: <UnitCreate /> },
+
         // Admin/users
         {
           path: 'users',
@@ -157,6 +167,14 @@ const LevelCreate = Loadable(lazy(() => import('../pages/dashboard/level/LevelCr
 // domains
 const Domains = Loadable(lazy(() => import('../pages/dashboard/domain')));
 const DomainCreate = Loadable(lazy(() => import('../pages/dashboard/domain/DomainCreate')));
+
+// strands
+const Strands = Loadable(lazy(() => import('../pages/dashboard/strand')));
+const StrandCreate = Loadable(lazy(() => import('../pages/dashboard/strand/StrandCreate')));
+
+// units
+const Units = Loadable(lazy(() => import('../pages/dashboard/unit')));
+const UnitCreate = Loadable(lazy(() => import('../pages/dashboard/unit/UnitCreate')));
 
 // users
 const User = Loadable(lazy(() => import('../pages/dashboard/user')));

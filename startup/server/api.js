@@ -21,6 +21,14 @@ import DomainTypes from '../../api/Domains/types';
 import DomainQueries from '../../api/Domains/queries';
 import DomainMutations from '../../api/Domains/mutations';
 
+import StrandTypes from '../../api/Strands/types';
+import StrandQueries from '../../api/Strands/queries';
+import StrandMutations from '../../api/Strands/mutations';
+
+import UnitTypes from '../../api/Units/types';
+import UnitQueries from '../../api/Units/queries';
+import UnitMutations from '../../api/Units/mutations';
+
 import OAuthQueries from '../../api/OAuth/queries';
 
 import '../../api/Ratings/server/indexes';
@@ -36,6 +44,8 @@ const schema = {
     ${UserTypes}
     ${RatingTypes}
     ${LevelTypes}
+    ${StrandTypes}
+    ${UnitTypes}
     ${DomainTypes}
     ${UserSettingsTypes}
 
@@ -46,6 +56,10 @@ const schema = {
       level(_id: String): Level
       domains: [Domain]
       domain(_id: String): Domain
+      strands: [Strand]
+      strand(_id: String): Strand
+      units: [Unit]
+      unit(_id: String): Unit
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
       findUserByRole(role: String): Users
@@ -64,6 +78,12 @@ const schema = {
       addDomain(Domain: String!, Description: String, Teachers: [String]): Domain
       updateDomain(_id: String!, Domain: String!, Description: String, Teachers: [String]): Domain
       removeDomain(_id: String!): Domain
+      addStrand(Strand: String!, Description: String, Domain: String, ParentStrand: String): Strand
+      updateStrand(_id: String!, Strand: String!, Description: String, Domain: String, ParentStrand: String): Strand
+      removeStrand(_id: String!): Strand
+      addUnit(Unit: String!, Description: String, Level: String, Strand: String): Unit
+      updateUnit(_id: String!, Unit: String!, Description: String, Level: String, Strand: String): Unit
+      removeUnit(_id: String!): Unit
       updateUser(user: UserInput): User
       removeUser(_id: String): User
       addUserSetting(setting: UserSettingInput): UserSetting
@@ -78,6 +98,8 @@ const schema = {
       ...RatingQueries,
       ...LevelQueries,
       ...DomainQueries,
+      ...StrandQueries,
+      ...UnitQueries,
       ...UserQueries,
       ...UserSettingsQueries,
       ...OAuthQueries,
@@ -86,6 +108,8 @@ const schema = {
       ...RatingMutations,
       ...LevelMutations,
       ...DomainMutations,
+      ...StrandMutations,
+      ...UnitMutations,
       ...UserMutations,
       ...UserSettingsMutations,
     },

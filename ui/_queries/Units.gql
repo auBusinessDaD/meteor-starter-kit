@@ -1,0 +1,23 @@
+#import "../_fragments/Units.gql"
+
+query units {
+  units {
+    _id
+    Unit
+    Description
+    Level
+    Strand
+  }
+}
+
+query editUnit($_id: String) {
+  unit(_id: $_id) {
+    ...UnitAttributes
+  }
+}
+
+query unit($_id: String, $sortBy: String) {
+  unit(_id: $_id) {
+    ...UnitAttributes
+  }
+}

@@ -56,7 +56,6 @@
 
 ./startup/server/
 	api.js
-	fixtures.js
 
 
 [needs to be changed if adding navigation]
@@ -75,6 +74,9 @@
 [unsure if needs to be changed for every new collection]
 ./api/OAuth/
 	queries.js
+
+./startup/server/
+	fixtures.js
 
 
 [not needed to be changed for every new collection]

@@ -1,0 +1,23 @@
+#import "../_fragments/Strands.gql"
+
+query strands {
+  strands {
+    _id
+    Strand
+    Description
+    Domain
+    ParentStrand
+  }
+}
+
+query editStrand($_id: String) {
+  strand(_id: $_id) {
+    ...StrandAttributes
+  }
+}
+
+query strand($_id: String, $sortBy: String) {
+  strand(_id: $_id) {
+    ...StrandAttributes
+  }
+}

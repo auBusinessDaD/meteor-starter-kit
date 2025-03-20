@@ -1,0 +1,7 @@
+fragment StrandAttributes on Strand {
+	_id
+	Strand
+	Description
+	Domain
+	ParentStrand
+}

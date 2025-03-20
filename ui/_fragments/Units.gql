@@ -1,0 +1,7 @@
+fragment UnitAttributes on Unit {
+	_id
+	Unit
+	Description
+	Level
+	Strand
+}

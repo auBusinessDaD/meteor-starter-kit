@@ -1,0 +1,38 @@
+mutation addUnit(
+  $Unit: String!,
+  $Description: String,
+  $Level: String,
+  $Strand: String
+) {
+  addUnit(Unit: $Unit, Description: $Description, Level: $Level, Strand: $Strand) {
+    _id
+    Unit
+    Description
+    Level
+    Strand
+  }
+}
+
+mutation updateUnit(
+  $_id: String!,
+  $Unit: String!,
+  $Description: String,
+  $Level: String,
+  $Strand: String
+) {
+  updateUnit(_id: $_id, Unit: $Unit, Description: $Description, Level: $Level, Strand: $Strand) {
+    _id
+    Unit
+    Description
+    Level
+    Strand
+  }
+}
+
+mutation removeUnit(
+  $_id: String!
+) {
+  removeUnit(_id: $_id) {
+    _id
+  }
+}

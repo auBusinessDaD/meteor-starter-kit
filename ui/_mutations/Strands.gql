@@ -1,0 +1,38 @@
+mutation addStrand(
+  $Strand: String!,
+  $Description: String,
+  $Domain: String,
+  $ParentStrand: String
+) {
+  addStrand(Strand: $Strand, Description: $Description, Domain: $Domain, ParentStrand: $ParentStrand) {
+    _id
+    Strand
+    Description
+    Domain
+    ParentStrand
+  }
+}
+
+mutation updateStrand(
+  $_id: String!,
+  $Strand: String!,
+  $Description: String,
+  $Domain: String,
+  $ParentStrand: String
+) {
+  updateStrand(_id: $_id, Strand: $Strand, Description: $Description, Domain: $Domain, ParentStrand: $ParentStrand) {
+    _id
+    Strand
+    Description
+    Domain
+    ParentStrand
+  }
+}
+
+mutation removeStrand(
+  $_id: String!
+) {
+  removeStrand(_id: $_id) {
+    _id
+  }
+}

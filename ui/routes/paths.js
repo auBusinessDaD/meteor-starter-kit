@@ -60,6 +60,20 @@ export const PATH_DASHBOARD = {
     edit: (name) => path(ROOTS_DASHBOARD, `/domains/${name}/edit`),
   },
 
+  // strands
+  strand: {
+    root: path(ROOTS_DASHBOARD, '/strands'),
+    create: path(ROOTS_DASHBOARD, '/strands/create'),
+    edit: (name) => path(ROOTS_DASHBOARD, `/strands/${name}/edit`),
+  },
+
+  // units
+  unit: {
+    root: path(ROOTS_DASHBOARD, '/units'),
+    create: path(ROOTS_DASHBOARD, '/units/create'),
+    edit: (name) => path(ROOTS_DASHBOARD, `/units/${name}/edit`),
+  },
+
   // users
   user: {
     root: path(ROOTS_DASHBOARD, '/users'),
