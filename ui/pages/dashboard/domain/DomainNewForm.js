@@ -148,7 +148,7 @@ export default function DomainNewEditForm({ isEdit, currentDomain }) {
                   <Autocomplete
                     {...field}
                     multiple
-                    options={Array.isArray(teachersData?.findUserByRole?.users) ? teachersData.findUserByRole.users : []}
+                    options={teachersData?.findUserByRole.users || []}
                     getOptionLabel={(user) => `${user.name.first} ${user.name.last}`}
                     isOptionEqualToValue={(option, value) => option._id === value._id}
                     loading={teachersLoading}

@@ -48,6 +48,11 @@ const navConfig = [
         icon: getIcon('gala:file-doc'),
       },
       {
+        title: 'classes',
+        path: `${PATH_DASHBOARD.class.root}`,
+        icon: getIcon('gala:file-doc'),
+      },
+      {
         title: 'users',
         path: `${PATH_DASHBOARD.user.root}`,
         icon: getIcon('gis:globe-users'),

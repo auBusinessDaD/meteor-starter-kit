@@ -1,0 +1,11 @@
+fragment ClassAttributes on Class {
+	_id
+	Class
+	Description
+	Level
+	Strand
+	Year
+	Semester
+	Teacher
+	Students
+}

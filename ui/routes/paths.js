@@ -74,6 +74,13 @@ export const PATH_DASHBOARD = {
     edit: (name) => path(ROOTS_DASHBOARD, `/units/${name}/edit`),
   },
 
+  // classes
+  class: {
+    root: path(ROOTS_DASHBOARD, '/classes'),
+    create: path(ROOTS_DASHBOARD, '/classes/create'),
+    edit: (name) => path(ROOTS_DASHBOARD, `/classes/${name}/edit`),
+  },
+
   // users
   user: {
     root: path(ROOTS_DASHBOARD, '/users'),

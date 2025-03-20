@@ -1,0 +1,54 @@
+mutation addClass(
+  $Class: String!,
+  $Description: String,
+  $Level: String,
+  $Strand: String,
+  $Year: String,
+  $Semester: String,
+  $Teacher: String,
+  $Students: [String]
+) {
+  addClass(Class: $Class, Description: $Description, Level: $Level, Strand: $Strand, Year: $Year, Semester: $Semester, Teacher: $Teacher, Students: $Students) {
+    _id
+    Class
+    Description
+    Level
+    Strand
+    Year
+    Semester
+    Teacher
+    Students
+  }
+}
+
+mutation updateClass(
+  $_id: String!,
+  $Class: String!,
+  $Description: String,
+  $Level: String,
+  $Strand: String,
+  $Year: String,
+  $Semester: String,
+  $Teacher: String,
+  $Students: [String]
+) {
+  updateClass(_id: $_id, Class: $Class, Description: $Description, Level: $Level, Strand: $Strand, Year: $Year, Semester: $Semester, Teacher: $Teacher, Students: $Students) {
+    _id
+    Class
+    Description
+    Level
+    Strand
+    Year
+    Semester
+    Teacher
+    Students
+  }
+}
+
+mutation removeClass(
+  $_id: String!
+) {
+  removeClass(_id: $_id) {
+    _id
+  }
+}

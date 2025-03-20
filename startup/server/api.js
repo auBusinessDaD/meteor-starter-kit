@@ -29,6 +29,10 @@ import UnitTypes from '../../api/Units/types';
 import UnitQueries from '../../api/Units/queries';
 import UnitMutations from '../../api/Units/mutations';
 
+import ClassTypes from '../../api/Classes/types';
+import ClassQueries from '../../api/Classes/queries';
+import ClassMutations from '../../api/Classes/mutations';
+
 import OAuthQueries from '../../api/OAuth/queries';
 
 import '../../api/Ratings/server/indexes';
@@ -46,6 +50,7 @@ const schema = {
     ${LevelTypes}
     ${StrandTypes}
     ${UnitTypes}
+    ${ClassTypes}
     ${DomainTypes}
     ${UserSettingsTypes}
 
@@ -60,6 +65,8 @@ const schema = {
       strand(_id: String): Strand
       units: [Unit]
       unit(_id: String): Unit
+      classes: [Class]
+      class(_id: String): Class
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
       findUserByRole(role: String): Users
@@ -84,6 +91,9 @@ const schema = {
       addUnit(Unit: String!, Description: String, Level: String, Strand: String): Unit
       updateUnit(_id: String!, Unit: String!, Description: String, Level: String, Strand: String): Unit
       removeUnit(_id: String!): Unit
+      addClass(Class: String!, Description: String, Level: String, Strand: String, Year: String, Semester: String, Teacher: String, Students: [String]): Class
+      updateClass(_id: String!, Class: String!, Description: String, Level: String, Strand: String, Year: String, Semester: String, Teacher: String, Students: [String]): Class
+      removeClass(_id: String!): Class
       updateUser(user: UserInput): User
       removeUser(_id: String): User
       addUserSetting(setting: UserSettingInput): UserSetting
@@ -100,6 +110,7 @@ const schema = {
       ...DomainQueries,
       ...StrandQueries,
       ...UnitQueries,
+      ...ClassQueries,
       ...UserQueries,
       ...UserSettingsQueries,
       ...OAuthQueries,
@@ -110,6 +121,7 @@ const schema = {
       ...DomainMutations,
       ...StrandMutations,
       ...UnitMutations,
+      ...ClassMutations,
       ...UserMutations,
       ...UserSettingsMutations,
     },

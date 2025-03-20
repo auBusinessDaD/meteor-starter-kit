@@ -1,0 +1,27 @@
+#import "../_fragments/Classes.gql"
+
+query classes {
+  classes {
+    _id
+    Class
+    Description
+    Level
+    Strand
+    Year
+    Semester
+    Teacher
+    Students
+  }
+}
+
+query editClass($_id: String) {
+  class(_id: $_id) {
+    ...ClassAttributes
+  }
+}
+
+query class($_id: String, $sortBy: String) {
+  class(_id: $_id) {
+    ...ClassAttributes
+  }
+}
