@@ -74,6 +74,11 @@ export default function Router() {
         { path: 'classes/create', element: <ClassCreate /> },
         { path: 'classes/:classId/edit', element: <ClassCreate /> },
 
+        // continuum
+        { path: 'continuum', element: <Continuum /> },
+        { path: 'continuum/create', element: <ContCreate /> },
+        { path: 'continuum/:contId/edit', element: <ContCreate /> },
+
         // Admin/users
         {
           path: 'users',
@@ -184,6 +189,10 @@ const UnitCreate = Loadable(lazy(() => import('../pages/dashboard/unit/UnitCreat
 // classes
 const Classes = Loadable(lazy(() => import('../pages/dashboard/class')));
 const ClassCreate = Loadable(lazy(() => import('../pages/dashboard/class/ClassCreate')));
+
+// continuum
+const Continuum = Loadable(lazy(() => import('../pages/dashboard/cont')));
+const ContCreate = Loadable(lazy(() => import('../pages/dashboard/cont/ContCreate')));
 
 // users
 const User = Loadable(lazy(() => import('../pages/dashboard/user')));

@@ -16,10 +16,12 @@ const getTotalUserCount = (currentUserId) => {
 
 const getUsers = (options) => {
   try {
-    return Meteor.users
+    const users = Meteor.users
       .find({ roles: options.role })
       .fetch()
       .map((user) => mapMeteorUserToSchema({ user }));
+
+    return users;
   } catch (exception) {
     throw new Error(`[queryByRoles.getUsers] ${exception.message}`);
   }

@@ -147,7 +147,7 @@ function MenuMobileItem({ item, isOpen, onOpen }) {
     );
   }
 
-  if (title === 'Ratings' || title === 'Levels' || title === 'Domains' || title === 'Strands' || title === 'Units' || title === 'Classes') {
+  if (title === 'Ratings' || title === 'Levels' || title === 'Domains' || title === 'Strands' || title === 'Units' || title === 'Classes' || title === 'Continuum') {
     return (
       <ListItemStyle href={path} target="_blank" rel="noopener" component={Link}>
         <ListItemIcon>{icon}</ListItemIcon>

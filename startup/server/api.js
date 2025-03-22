@@ -33,15 +33,18 @@ import ClassTypes from '../../api/Classes/types';
 import ClassQueries from '../../api/Classes/queries';
 import ClassMutations from '../../api/Classes/mutations';
 
+import ContTypes from '../../api/Continuum/types';
+import ContQueries from '../../api/Continuum/queries';
+import ContMutations from '../../api/Continuum/mutations';
+
 import OAuthQueries from '../../api/OAuth/queries';
 
-import '../../api/Ratings/server/indexes';
+import '../../api/Continuum/server/indexes';
 import '../../api/webhooks';
 
 import '../../api/App/server/publications';
 
 import '../../api/Users/methods';
-
 
 const schema = {
   typeDefs: gql`
@@ -51,6 +54,7 @@ const schema = {
     ${StrandTypes}
     ${UnitTypes}
     ${ClassTypes}
+    ${ContTypes}
     ${DomainTypes}
     ${UserSettingsTypes}
 
@@ -67,6 +71,8 @@ const schema = {
       unit(_id: String): Unit
       classes: [Class]
       class(_id: String): Class
+      continuum: [Cont]
+      cont(_id: String): Cont
       user(_id: String): User
       users(currentPage: Int, perPage: Int, search: String): Users
       findUserByRole(role: String): Users
@@ -94,6 +100,9 @@ const schema = {
       addClass(Class: String!, Description: String, Level: String, Strand: String, Year: String, Semester: String, Teacher: String, Students: [String]): Class
       updateClass(_id: String!, Class: String!, Description: String, Level: String, Strand: String, Year: String, Semester: String, Teacher: String, Students: [String]): Class
       removeClass(_id: String!): Class
+      addCont(Entry: String!, Description: String, Rating: String, Unit: String, Student: UserInfoInput): Cont
+      updateCont(_id: String!, Entry: String!, Description: String, Rating: String, Unit: String, Student: UserInfoInput): Cont
+      removeCont(_id: String!): Cont
       updateUser(user: UserInput): User
       removeUser(_id: String): User
       addUserSetting(setting: UserSettingInput): UserSetting
@@ -111,6 +120,7 @@ const schema = {
       ...StrandQueries,
       ...UnitQueries,
       ...ClassQueries,
+      ...ContQueries,
       ...UserQueries,
       ...UserSettingsQueries,
       ...OAuthQueries,
@@ -122,6 +132,7 @@ const schema = {
       ...StrandMutations,
       ...UnitMutations,
       ...ClassMutations,
+      ...ContMutations,
       ...UserMutations,
       ...UserSettingsMutations,
     },

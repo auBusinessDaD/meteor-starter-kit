@@ -1,0 +1,50 @@
+mutation addCont(
+  $Entry: String!,
+  $Description: String,
+  $Rating: String,
+  $Unit: String,
+  $Student: UserInfoInput
+) {
+  addCont(Entry: $Entry, Description: $Description, Rating: $Rating, Unit: $Unit, Student: $Student) {
+    _id
+    Entry
+    Description
+    Rating
+    Unit
+    Student {
+      _id
+      given
+      family
+    }
+  }
+}
+
+mutation updateCont(
+  $_id: String!,
+  $Entry: String!,
+  $Description: String,
+  $Rating: String,
+  $Unit: String,
+  $Student: UserInfoInput
+) {
+  updateCont(_id: $_id, Entry: $Entry, Description: $Description, Rating: $Rating, Unit: $Unit, Student: $Student) {
+    _id
+    Entry
+    Description
+    Rating
+    Unit
+    Student {
+      _id
+      given
+      family
+    }
+  }
+}
+
+mutation removeCont(
+  $_id: String!
+) {
+  removeCont(_id: $_id) {
+    _id
+  }
+}

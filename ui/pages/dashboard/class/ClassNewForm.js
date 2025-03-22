@@ -58,11 +58,11 @@ export default function ClassNewEditForm({ isEdit, currentClass }) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  const { data: levelsData, loading: levelsLoading } = useQuery(levelsQuery);
-  const { data: strandsData, loading: strandsLoading } = useQuery(strandsQuery);
-  const { data: teachersData, loading: teachersLoading } = useQuery(usersQuery, {
+  const { data: teacherData, loading: teacherLoading } = useQuery(usersQuery, {
     variables: { role: "teacher" },
   });
+  const { data: levelsData, loading: levelsLoading } = useQuery(levelsQuery);
+  const { data: strandsData, loading: strandsLoading } = useQuery(strandsQuery);
   const { data: studentsData, loading: studentsLoading } = useQuery(usersQuery, {
     variables: { role: "student" },
   });
@@ -79,7 +79,7 @@ export default function ClassNewEditForm({ isEdit, currentClass }) {
       strandsData?.strands?.find((strand) => strand._id === currentClass?.Strand) || null;
 
     const mappedTeacher =
-      teachersData?.findUserByRole?.users?.find((user) => user._id === currentClass?.Teacher) || null;
+      teacherData?.findUserByRole?.users?.find((user) => user._id === currentClass?.Teacher) || null;
 
     const mappedStudents =
       currentClass?.Students?.map((studentId) =>
@@ -96,7 +96,7 @@ export default function ClassNewEditForm({ isEdit, currentClass }) {
       Teacher: mappedTeacher,
       Students: mappedStudents
     };
-  }, [currentClass, levelsData, strandsData, teachersData, studentsData]);
+  }, [currentClass, levelsData, strandsData, teacherData, studentsData]);
 
   const methods = useForm({
     resolver: yupResolver(NewClassSchema),
@@ -216,12 +216,12 @@ export default function ClassNewEditForm({ isEdit, currentClass }) {
                 render={({ field }) => (
                   <Autocomplete
                     {...field}
-                    options={teachersData?.findUserByRole.users || []}
+                    options={teacherData?.findUserByRole?.users || []}
                     getOptionLabel={(user) => `${user.name.first} ${user.name.last}`}
                     isOptionEqualToValue={(option, value) => option._id === value._id}
-                    loading={teachersLoading}
+                    loading={teacherLoading}
                     onChange={(_, newValue) => field.onChange(newValue)}
-                    renderInput={(params) => <RHFTextField {...params} name="Teachers" label="Teachers" />}
+                    renderInput={(params) => <RHFTextField {...params} name="Teacher" label="Teacher" />}
                   />
                 )}
               />
@@ -233,7 +233,7 @@ export default function ClassNewEditForm({ isEdit, currentClass }) {
                   <Autocomplete
                     {...field}
                     multiple
-                    options={studentsData?.findUserByRole.users || []}
+                    options={studentsData?.findUserByRole?.users || []}
                     getOptionLabel={(user) => `${user.name.first} ${user.name.last}`}
                     isOptionEqualToValue={(option, value) => option._id === value._id}
                     loading={studentsLoading}

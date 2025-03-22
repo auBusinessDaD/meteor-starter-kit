@@ -1,0 +1,17 @@
+fragment ContAttributes on Cont {
+	_id
+	Entry
+	Description
+	Rating
+	Unit
+	Teacher {
+      _id
+      given
+      family
+    }
+	Student {
+      _id
+      given
+      family
+    }
+}

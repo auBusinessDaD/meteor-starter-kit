@@ -81,6 +81,13 @@ export const PATH_DASHBOARD = {
     edit: (name) => path(ROOTS_DASHBOARD, `/classes/${name}/edit`),
   },
 
+  // continuum
+  cont: {
+    root: path(ROOTS_DASHBOARD, '/continuum'),
+    create: path(ROOTS_DASHBOARD, '/continuum/create'),
+    edit: (name) => path(ROOTS_DASHBOARD, `/continuum/${name}/edit`),
+  },
+
   // users
   user: {
     root: path(ROOTS_DASHBOARD, '/users'),

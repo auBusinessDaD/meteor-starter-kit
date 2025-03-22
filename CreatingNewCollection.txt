@@ -15,6 +15,17 @@
 	queries.js
 	types.js
 
+./ui/pages/dashboard/flubby/
+	index.js
+	FlubbyCreate.js
+	FlubbyList.js
+	FlubbyNewForm.js
+
+./ui/sections/@dashboard/flubby-list/
+	index.js
+	FlubbyTableRow.js
+	FlubbyTableToolbar.js
+
 ./api/Flubby/server/
 	indexes.js
 
@@ -26,17 +37,6 @@
 
 ./ui/_queries/
 	Flubby.gql
-
-./ui/pages/dashboard/flubby/
-	index.js
-	FlubbyCreate.js
-	FlubbyList.js
-	FlubbyNewForm.js
-
-./ui/sections/@dashboard/flubby-list/
-	index.js
-	FlubbyTableRow.js
-	FlubbyTableToolbar.js
 
 
 [Modify these files]

@@ -48,8 +48,13 @@ const navConfig = [
         icon: getIcon('gala:file-doc'),
       },
       {
-        title: 'classes',
+        title: 'Classes',
         path: `${PATH_DASHBOARD.class.root}`,
+        icon: getIcon('gala:file-doc'),
+      },
+      {
+        title: 'Continuum',
+        path: `${PATH_DASHBOARD.cont.root}`,
         icon: getIcon('gala:file-doc'),
       },
       {

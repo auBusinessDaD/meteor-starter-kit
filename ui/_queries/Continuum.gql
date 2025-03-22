@@ -1,0 +1,33 @@
+#import "../_fragments/Continuum.gql"
+
+query continuum {
+  continuum {
+    _id
+    Entry
+    Description
+    Rating
+    Unit
+    Student {
+      _id
+      given
+      family
+    }
+    Teacher {
+      _id
+      given
+      family
+    }
+  }
+}
+
+query editCont($_id: String) {
+  cont(_id: $_id) {
+    ...ContAttributes
+  }
+}
+
+query cont($_id: String, $sortBy: String) {
+  cont(_id: $_id) {
+    ...ContAttributes
+  }
+}
